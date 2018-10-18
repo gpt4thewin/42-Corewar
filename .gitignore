@@ -1,0 +1,9 @@
+.DS_Store
+.vscode/
+libft/obj
+asm/objs
+vm/objs
+commons/objs
+asm/asm
+vm/corewar
+resources/diff_tool/results/
