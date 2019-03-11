@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:22:34 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/11 17:18:57 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/11 19:15:46 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ static void	read_error(const char *filename)
 	exit(EXIT_FAILURE);
 }
 
-static void	read_or_die(int fd, void *ptr, size_t size, const char *filename)
+static void	read_n_bytes(int fd, void *ptr, ssize_t size, const char *filename)
 {
-	size_t		read_size;
+	ssize_t		read_size;
 
-	read_size = read(fd, ptr, size);
+	read_size = (ssize_t)read(fd, ptr, size);
+	if (read_size < 0)
+	{
+		perror(strerror(errno));
+		exit(EXIT_FAILURE);
+	}
 	if (read_size != size)
 	{
 		read_error(filename);
@@ -34,15 +39,22 @@ void		player_load(t_player *player)
 	int			fd;
 	t_header	header;
 
-	fd = (int)fopen(player->file, "rb");
-	if (fd == 0)
+	fd = open(player->file, O_RDONLY);
+	if (fd <= 0)
 	{
 		perror(strerror(errno));
 		exit(EXIT_FAILURE);
 	}
-	read_or_die(fd, &header, sizeof(header), player->file);
-	if (header.magic != COREWAR_EXEC_MAGIC || header.prog_size > CHAMP_MAX_SIZE)
+	read_n_bytes(fd, &header, sizeof(header), player->file);
+	header.magic = to_little_endian32(header.magic);
+	header.prog_size = to_little_endian32(header.prog_size);
+	if (header.magic != COREWAR_EXEC_MAGIC)
 		read_error(player->file);
-	read_or_die(fd, &player->program, header.prog_size, player->file);
+	if (header.prog_size > CHAMP_MAX_SIZE)
+	{
+		ft_fprintf(2, "%s is too big\n", player->file);
+		exit(EXIT_FAILURE);
+	}
+	read_n_bytes(fd, &player->program, header.prog_size, player->file);
 	close(fd);
 }

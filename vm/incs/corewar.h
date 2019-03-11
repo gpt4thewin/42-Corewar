@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/11 17:17:37 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/11 19:05:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include "op.h"
 # include <stdio.h>
 # include <errno.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
 
 /*
 **	Defines.
@@ -91,5 +95,11 @@ void		parse_parameters(t_corewar *corewar, int ac, const char *av[]);
 */
 
 void		player_load(t_player *player);
+
+/*
+**	Utils.
+*/
+
+int		to_little_endian32(int val);
 
 #endif

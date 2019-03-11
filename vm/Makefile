@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/11 16:58:26 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/11 18:56:07 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME		= corewar
 SOURCES		+=	main.c \
 				corewar.c \
 				parse_parameters.c \
-				player.c
+				player.c \
+				endian_utils.c
 SRCS_DR		= srcs
 SRCS		= $(addprefix $(SRCS_DR)/, $(SOURCES))
 
@@ -24,11 +25,13 @@ CM_SRCS_DR	= ../commons
 CM_SRCS		= $(addprefix $(CM_SRCS_DR)/, $(CM_SOURCES))
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -I ../libft/includes -I ../commons -I incs -g -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra -I ../libft/includes -I ../commons -I incs -g
 
+DEPS		= incs/corewar.h Makefile
 OBJS_DR		= objs
 OBJS		= $(SRCS:$(SRCS_DR)/%.c=$(OBJS_DR)/%.o)
 
+CM_DEPS		= ../commons/op.h Makefile
 CM_OBJS_DR	= ../commons/objs
 CM_OBJS		= $(CM_SRCS:$(CM_SRCS_DR)/%.c=$(CM_OBJS_DR)/%.o)
 
@@ -59,11 +62,11 @@ $(OBJS_DR) :
 	@ mkdir -p $(OBJS_DR)
 	@ mkdir -p $(CM_OBJS_DR)
 
-$(OBJS_DR)/%.o : $(SRCS_DR)/%.c
+$(OBJS_DR)/%.o : $(SRCS_DR)/%.c $(DEPS)
 	@ $(CC) $(CFLAGS) -o $@ -c $<
 	@ printf "$(ITALIC)$(BLUE)%-42.42s$(RESET)\r" "Compiled $@"
 
-$(CM_OBJS_DR)/%.o : $(CM_SRCS_DR)/%.c
+$(CM_OBJS_DR)/%.o : $(CM_SRCS_DR)/%.c $(CM_DEPS)
 	@ $(CC) $(CFLAGS) -o $@ -c $<
 	@ printf "$(ITALIC)$(BLUE)%-42.42s$(RESET)\r" "Compiled $@"
 
