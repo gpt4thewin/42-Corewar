@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/11 16:58:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/11 16:58:16 by juazouz          ###   ########.fr       */
+/*   Created: 2018/10/18 16:46:41 by mbakhti           #+#    #+#             */
+/*   Updated: 2019/03/11 17:04:01 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-t_corewar	*corewar_new(void)
+static void	load_players(t_corewar *corewar)
 {
-	t_corewar	*res;
+	int	i;
 
-	res = ft_memalloc(sizeof(t_corewar));
-	res->dump_nbr_cycle = -1;
-	res->cycle_to_die = CYCLE_TO_DIE;
-	return (res);
+	i = 0;
+	while (i < corewar->players_count)
+	{
+		player_load(&corewar->players[i]);
+		i++;
+	}
 }
 
-void		corewar_die(char *msg)
+int			main(int ac, const char *av[])
 {
-	ft_fprintf(2, "%s\n", msg);
-	exit(EXIT_FAILURE);
+	t_corewar	*corewar;
+
+	corewar = corewar_new();
+	parse_parameters(corewar, ac, av);
+	load_players(corewar);
+	free(corewar);
+	return (EXIT_SUCCESS);
 }

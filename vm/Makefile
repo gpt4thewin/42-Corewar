@@ -3,16 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+         #
+#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/09 02:34:37 by mbakhti          ###   ########.fr        #
+#    Updated: 2019/03/11 16:58:26 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= corewar
 
-SOURCES		+= corewar.c
+SOURCES		+=	main.c \
+				corewar.c \
+				parse_parameters.c \
+				player.c
 SRCS_DR		= srcs
 SRCS		= $(addprefix $(SRCS_DR)/, $(SOURCES))
 
@@ -21,7 +24,7 @@ CM_SRCS_DR	= ../commons
 CM_SRCS		= $(addprefix $(CM_SRCS_DR)/, $(CM_SOURCES))
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -I ../libft/includes -I ../commons -I incs -g
+CFLAGS		= -Wall -Werror -Wextra -I ../libft/includes -I ../commons -I incs -g -fsanitize=address
 
 OBJS_DR		= objs
 OBJS		= $(SRCS:$(SRCS_DR)/%.c=$(OBJS_DR)/%.o)

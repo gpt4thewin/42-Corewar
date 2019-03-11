@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/11 16:01:50 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/11 17:17:37 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include "libft.h"
 # include "op.h"
+# include <stdio.h>
+# include <errno.h>
+
+/*
+**	Defines.
+*/
+
+# define MSG_COMMAND_LINE_ERROR "Error: invalid command line."
 
 typedef struct s_player		t_player;
 typedef struct s_player		t_player;
@@ -30,6 +38,7 @@ struct						s_player
 	int			id;
 	int			last_check;
 	int			load_addr;
+	const char	*file;
 	char		program[CHAMP_MAX_SIZE];
 };
 
@@ -63,5 +72,24 @@ struct						s_instruction
 	t_arg_type	arg_type_4:2;
 	int			parameters[0];
 };
+
+/*
+**	Corewar.
+*/
+
+t_corewar	*corewar_new(void);
+void		corewar_die(char *msg);
+
+/*
+**	Command line parser.
+*/
+
+void		parse_parameters(t_corewar *corewar, int ac, const char *av[]);
+
+/*
+**	Player.
+*/
+
+void		player_load(t_player *player);
 
 #endif
