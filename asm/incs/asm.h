@@ -6,7 +6,7 @@
 /*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:06 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/09 16:42:03 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/13 15:49:39 by mbakhti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "op.h"
+# include "commons.h"
 # include "lexer.h"
 # include "parser.h"
 # include <fcntl.h>
