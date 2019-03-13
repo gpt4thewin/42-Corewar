@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/03/08 19:14:28 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/13 14:30:54 by mbakhti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ typedef struct				s_op
 	_Bool					has_argcode;
 	_Bool					has_size_mod;
 }							t_op;
+
+extern	t_op		g_op_tab[];
 
 #endif
