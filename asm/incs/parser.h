@@ -6,7 +6,7 @@
 /*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 14:53:26 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/08 21:37:25 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/13 14:30:44 by mbakhti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct		s_instr
 	int				arg[MAX_ARGS_NUMBER];
 	struct s_instr	*next;
 }					t_instr;
-
-extern	t_op		g_op_tab[];
 
 void				parse_tokens(t_bytecode *bytecode, t_token *tokens);
 void				generate_header(t_header *header, t_token **current);
