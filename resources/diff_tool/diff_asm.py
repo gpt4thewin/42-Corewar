@@ -5,7 +5,7 @@ USR_ASM = "/Users/mbakhti/Desktop/Corewar/asm/asm"
 ZAZ_ASM = "/Users/mbakhti/Desktop/Corewar/resources/diff_tool/bin/zaz_asm"
 
 # Champions path:
-CHAMPIONS_DIRECTORY = "/Users/mbakhti/Desktop/Corewar/resources/diff_tool/champions"
+CHAMPIONS_DIRECTORY = "/Users/mbakhti/Desktop/Corewar/resources/diff_tool/champions/error"
 
 # Results path:
 RESULTS_DIRECTORY = "/Users/mbakhti/Desktop/Corewar/resources/diff_tool/results"
