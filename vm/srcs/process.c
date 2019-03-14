@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.c                                          :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/11 16:58:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 15:12:03 by juazouz          ###   ########.fr       */
+/*   Created: 2019/03/14 15:12:12 by juazouz           #+#    #+#             */
+/*   Updated: 2019/03/14 15:14:19 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-t_corewar	*corewar_new(void)
+t_process	*process_new(void)
 {
-	t_corewar	*res;
+	t_process	*res;
 
-	res = ft_memalloc(sizeof(t_corewar));
-	res->dump_nbr_cycle = -1;
-	res->cycle_to_die = CYCLE_TO_DIE;
+	res = ft_memalloc(sizeof(t_process));
 	return (res);
 }
 
-void		corewar_die(char *msg)
+t_process	*process_copy(t_process *process)
 {
-	ft_fprintf(2, "%s\n", msg);
-	exit(EXIT_FAILURE);
+	t_process	*res;
+
+	res = process_new();
+	ft_memcpy(res, process, sizeof(t_process));
+	return (res);
 }

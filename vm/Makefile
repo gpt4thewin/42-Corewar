@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/14 13:39:26 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/14 15:19:03 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SOURCES		+=	main.c \
 				arg_utils.c \
 				instructions/instructions.c \
 				parse_parameters.c \
+				setup_players.c \
+				process.c \
 				player.c \
 				endian_utils.c
 SRCS_DR		= srcs

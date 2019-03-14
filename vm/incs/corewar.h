@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/14 14:55:22 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/14 15:18:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,12 @@ t_player		*corewar_run(t_corewar *corewar);
 void			corewar_die(char *msg);
 
 /*
+**	Player setup.
+*/
+
+void			setup_players(t_corewar *corewar);
+
+/*
 **	Command line parser.
 */
 
@@ -180,6 +186,13 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[]);
 */
 
 void			player_load(t_player *player);
+
+/*
+**	Process.
+*/
+
+t_process	*process_new(void);
+t_process	*process_copy(t_process *process);
 
 /*
 **	Utils.

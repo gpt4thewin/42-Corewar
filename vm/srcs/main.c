@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:41 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/11 19:22:49 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/14 15:18:45 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int			main(int ac, const char *av[])
 	corewar = corewar_new();
 	parse_parameters(corewar, ac, av);
 	load_players(corewar);
+	setup_players(corewar);
 	winner = corewar_run(corewar);
 	free(corewar);
 	return (EXIT_SUCCESS);

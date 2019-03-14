@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 13:37:24 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/14 15:37:16 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ static void	run_process_cycle(t_corewar *corewar, t_process *process)
 		return ;
 	}
 	// TODO verify arguments type.
-	func = g_op_func_tab[op->opcode - 1];
-	func(corewar, process, inst);
+	func = g_op_func_tab[(int)op->opcode];
+	process->pc += func(corewar, process, inst);
 	process->next_cycle += op->cycles;
 }
 
@@ -105,7 +105,8 @@ static void	run_cycle(t_corewar *corewar)
 	while (*curr != NULL)
 	{
 		process = (t_process*)(*curr)->content;
-		run_process_cycle(corewar, process);
+		if (process->next_cycle <= corewar->curr_cycle)
+			run_process_cycle(corewar, process);
 		curr = &(*curr)->next;
 	}
 }
