@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/14 13:43:46 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/14 14:55:22 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ struct						s_player
 {
 	int			id;
 	int			last_check;
-	int			load_addr;
 	const char	*file;
 	char		prog_name[PROG_NAME_LENGTH + 1];
 	char		program[CHAMP_MAX_SIZE];
