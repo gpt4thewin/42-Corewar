@@ -33,16 +33,23 @@ def	initialise_results_directory():
 
 def	main():
 	parser = argparse.ArgumentParser()
-	parser.add_argument("cycles", type=int, help="dump after N cycles")
+	parser.add_argument("--dump", type=int, help="dump after DUMP cycles")
 	parser.add_argument('champion', help='compiled champion to load in vm', nargs='+')
 	args = parser.parse_args()
-	zaz_out = RESULTS_DIRECTORY + "/zaz/" + str(args.cycles) + ".dump"
-	usr_out = RESULTS_DIRECTORY + "/usr/" + str(args.cycles) + ".dump"
-	os.system(ZAZ_VM + " -d " + str(args.cycles)+ " " + " ".join(args.champion) + " > " + zaz_out)
-	os.system(USR_VM + " -d " + str(args.cycles)+ " " + " ".join(args.champion) + " > " + usr_out)
-	if not os.system("diff " + usr_out + " " + zaz_out):
-		print("No diff after {} cycles for champions: {}".format(args.cycles, args.champion))
-
+	if (args.dump):
+		zaz_out = RESULTS_DIRECTORY + "/zaz/" + str(args.dump) + ".dump"
+		usr_out = RESULTS_DIRECTORY + "/usr/" + str(args.dump) + ".dump"
+		os.system(ZAZ_VM + " -d " + str(args.dump)+ " " + " ".join(args.champion) + " > " + zaz_out)
+		os.system(USR_VM + " -d " + str(args.dump)+ " " + " ".join(args.champion) + " > " + usr_out)
+		if not os.system("diff " + usr_out + " " + zaz_out):
+			print("No diff after {} cycles for champions: {}".format(args.dump, args.champion))
+	else:
+		zaz_out = RESULTS_DIRECTORY + "/zaz/vm.dump"
+		usr_out = RESULTS_DIRECTORY + "/usr/vm.dump"
+		os.system(ZAZ_VM + " " + " ".join(args.champion) + " > " + zaz_out)
+		os.system(USR_VM + " " + " ".join(args.champion) + " > " + usr_out)
+		if not os.system("diff " + usr_out + " " + zaz_out):
+			print("No diff for champions: {}".format(args.champion))
 check_user_settings()
 initialise_results_directory()
 main()
