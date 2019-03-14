@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/11 18:56:07 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/14 13:39:26 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,9 @@ NAME		= corewar
 
 SOURCES		+=	main.c \
 				corewar.c \
+				corewar_run.c \
+				arg_utils.c \
+				instructions/instructions.c \
 				parse_parameters.c \
 				player.c \
 				endian_utils.c
@@ -63,10 +66,12 @@ $(OBJS_DR) :
 	@ mkdir -p $(CM_OBJS_DR)
 
 $(OBJS_DR)/%.o : $(SRCS_DR)/%.c $(DEPS)
+	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) -o $@ -c $<
 	@ printf "$(ITALIC)$(BLUE)%-42.42s$(RESET)\r" "Compiled $@"
 
 $(CM_OBJS_DR)/%.o : $(CM_SRCS_DR)/%.c $(CM_DEPS)
+	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) -o $@ -c $<
 	@ printf "$(ITALIC)$(BLUE)%-42.42s$(RESET)\r" "Compiled $@"
 
