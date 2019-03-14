@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/14 15:18:39 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/14 17:43:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,12 @@ struct						s_instruction
 t_corewar		*corewar_new(void);
 t_player		*corewar_run(t_corewar *corewar);
 void			corewar_die(char *msg);
+
+/*
+**	Memory dump command line option.
+*/
+
+void			dump(char *memory);
 
 /*
 **	Player setup.
