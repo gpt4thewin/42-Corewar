@@ -6,19 +6,11 @@
 /*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 02:16:52 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/11 21:37:21 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/13 14:59:29 by mbakhti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-static unsigned int	convert_big_endian(int number)
-{
-	return ((number & 0x000000ff) << 24)
-	| ((number & 0x0000ff00) << 8)
-	| ((number & 0x00ff0000) >> 8)
-	| ((number & 0xff000000) >> 24);
-}
 
 static int			create_file(char *filename)
 {
@@ -47,8 +39,8 @@ void				compile_champion(t_bytecode champion, char *filename)
 	fd = create_file(output);
 	ft_printf("Writing output program to %s\n", output);
 	size = champion.header.prog_size;
-	champion.header.magic = convert_big_endian(champion.header.magic);
-	champion.header.prog_size = convert_big_endian(champion.header.prog_size);
+	champion.header.magic = convert_endian32(champion.header.magic);
+	champion.header.prog_size = convert_endian32(champion.header.prog_size);
 	write(fd, &champion.header, sizeof(champion.header));
 	write(fd, champion.program, size);
 	ft_strdel(&output);

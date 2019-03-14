@@ -6,13 +6,13 @@
 #    By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/09 16:37:26 by mbakhti          ###   ########.fr        #
+#    Updated: 2019/03/13 15:50:14 by mbakhti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= asm
 
-CM_SOURCES	= op.c
+CM_SOURCES	= op.c convert_endian32.c
 CM_SRCS_DR	= ../commons
 CM_SRCS		= $(addprefix $(CM_SRCS_DR)/, $(CM_SOURCES))
 
