@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 14:55:27 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/18 15:34:51 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,13 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 
 	i = 1;
 	parse_dump(corewar, &i, av);
+	if (ac == 1)
+	{
+		ft_printf("\033[1;31m");
+		ft_printf("ERROR\n");
+		ft_printf("\033[0m");
+		exit(EXIT_FAILURE);
+	}
 	while (i < ac)
 	{
 		parse_champion(corewar, &i, av);
