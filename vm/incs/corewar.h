@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/14 17:43:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/18 14:42:55 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_corewar		t_corewar;
 typedef struct s_instruction	t_instruction;
 typedef union u_paramval		t_paramval;
 typedef struct s_arg_types_byte	t_arg_types_byte;
+typedef enum e_color			t_color;
 
 # if (REG_SIZE == 1)
 typedef char					t_reg;
@@ -96,6 +97,20 @@ struct						s_player
 };
 
 /*
+**	Color for print.
+*/
+
+enum 						s_color
+{
+
+	GREEN,
+	BLUE,
+	RED,
+	YELLOW,
+	WHITE
+};
+
+/*
 **	Virtual machine task / thread / process.
 */
 
@@ -125,6 +140,7 @@ struct						s_corewar
 	int			process_count;
 	t_list		*processes;
 	int			dump_nbr_cycle;
+	int			id_memory[MEM_SIZE];
 	char		memory[MEM_SIZE];
 };
 
@@ -173,7 +189,7 @@ void			corewar_die(char *msg);
 **	Memory dump command line option.
 */
 
-void			dump(char *memory);
+void			dump(t_corewar *corewar);
 
 /*
 **	Player setup.
