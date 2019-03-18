@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/18 15:34:51 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/18 16:21:43 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	if (ac == 1)
 	{
 		ft_printf("\033[1;31m");
-		ft_printf("ERROR\n");
+		ft_printf("ERROR: there is'nt a argument.\n");
 		ft_printf("\033[0m");
 		exit(EXIT_FAILURE);
 	}
