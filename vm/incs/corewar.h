@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/19 16:23:49 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 16:25:04 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_corewar		t_corewar;
 typedef struct s_instruction	t_instruction;
 typedef union u_paramval		t_paramval;
 typedef struct s_memaccess		t_memaccess;
+typedef enum e_color			t_color;
 
 # if (REG_SIZE == 1)
 typedef char					t_reg;
@@ -83,12 +84,25 @@ union							u_paramval
 };
 
 /*
+**	Enum of color for print dump.
+*/
+enum 							e_color
+{
+	RED,
+	GREEN,
+	YELLOW,
+	BLUE,
+	WHITE
+};
+
+/*
 **	Player.
 */
 
 struct						s_player
 {
 	int			id;
+	t_color		color;
 	int			last_check;
 	const char	*file;
 	char		prog_name[PROG_NAME_LENGTH + 1];
@@ -125,6 +139,7 @@ struct						s_corewar
 	int			process_count;
 	t_list		*processes;
 	int			dump_nbr_cycle;
+	t_color		id_memory[MEM_SIZE];
 	char		memory[MEM_SIZE];
 };
 
@@ -194,7 +209,7 @@ void			generic_write(t_corewar *corewar, t_memaccess *memaccess);
 **	Memory dump command line option.
 */
 
-void			dump(char *memory);
+void			dump(t_corewar *corewar);
 
 /*
 **	Player setup.
