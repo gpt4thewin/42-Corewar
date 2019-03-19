@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/14 17:43:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 16:23:49 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_process		t_process;
 typedef struct s_corewar		t_corewar;
 typedef struct s_instruction	t_instruction;
 typedef union u_paramval		t_paramval;
-typedef struct s_arg_types_byte	t_arg_types_byte;
+typedef struct s_memaccess		t_memaccess;
 
 # if (REG_SIZE == 1)
 typedef char					t_reg;
@@ -77,7 +77,7 @@ typedef long					t_dir;
 
 union							u_paramval
 {
-	t_reg		reg;
+	char		reg_id;
 	t_ind		ind;
 	t_dir		dir;
 };
@@ -129,37 +129,49 @@ struct						s_corewar
 };
 
 /*
-**	Byte code instruction with parameters.
+**	Generic memory read/write information.
+**	Contains both parameters and result.
 */
 
-struct	s_arg_types_byte
+struct						s_memaccess
 {
-	t_arg_type	arg_type_1:2;
-	t_arg_type	arg_type_2:2;
-	t_arg_type	arg_type_3:2;
-	t_arg_type	arg_type_4:2;
+	t_process	*process;
+	t_arg_type	arg_type;
+	t_paramval	paramval;
+	size_t		memsize;
+	int			value;
+	t_bool		success;
 };
+
+/*
+**	Byte code instruction with parameters.
+*/
 
 # define MAX_ARGS_TYPE_BYTES \
 	(MAX_ARGS_NUMBER / 4 + (MAX_ARGS_NUMBER % 4 > 0 ? 1 : 0))
 
 struct						s_param
 {
-	t_arg_types_byte	arg_types[MAX_ARGS_TYPE_BYTES];
-	char				parameters[0];
+	unsigned char	arg_type_4:2;
+	unsigned char	arg_type_3:2;
+	unsigned char	arg_type_2:2;
+	unsigned char	arg_type_1:2;
+	char			parameters[0];
 };
 
 union						u_param
 {
-	t_reg			single_reg;
+	t_dir			single_dir;
 	struct s_param	multi;
+	char			debug8;
+	char			debug16;
 };
 
 struct						s_instruction
 {
 	char			opcode;
 	union u_param	param;
-};
+}__attribute__((packed, aligned(1)));
 
 /*
 **	Corewar.
@@ -168,6 +180,15 @@ struct						s_instruction
 t_corewar		*corewar_new(void);
 t_player		*corewar_run(t_corewar *corewar);
 void			corewar_die(char *msg);
+t_reg			corewar_reg_read(t_corewar *corewar, int pc, int addr);
+void			corewar_reg_write(t_corewar *corewar, int pc, int addr, t_reg val);
+
+/*
+**	Memory.
+*/
+
+void			generic_read(t_corewar *corewar, t_memaccess *memaccess);
+void			generic_write(t_corewar *corewar, t_memaccess *memaccess);
 
 /*
 **	Memory dump command line option.
@@ -197,8 +218,8 @@ void			player_load(t_player *player);
 **	Process.
 */
 
-t_process	*process_new(void);
-t_process	*process_copy(t_process *process);
+t_process		*process_new(void);
+t_process		*process_copy(t_process *process);
 
 /*
 **	Utils.
@@ -210,8 +231,9 @@ int				to_little_endian32(int val);
 **	Instruction utils.
 */
 
-t_bool	is_valid_reg(int reg_id);
-t_reg	get_reg_value(t_process *process, int reg_id);
+t_bool			is_valid_reg(int reg_id);
+int				sizeof_arg_type(t_arg_type type);
+void			param_at(t_instruction *inst, int pos, t_arg_type type, void *res);
 
 /*
 **	Instructions processing.
@@ -219,21 +241,21 @@ t_reg	get_reg_value(t_process *process, int reg_id);
 
 extern	int	(*g_op_func_tab[])(t_corewar*, t_process*, t_instruction*);
 
-int		inst_live(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_ld(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_st(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_add(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_sub(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_and(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_or(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_xor(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_zjmp(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_ldi(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_sti(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_fork(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_lld(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_lldi(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_lfork(t_corewar *corewar, t_process *process, t_instruction*);
-int		inst_aff(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_live(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_ld(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_st(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_add(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_sub(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_and(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_or(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_xor(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_zjmp(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_ldi(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_sti(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_fork(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_lld(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_lldi(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_lfork(t_corewar *corewar, t_process *process, t_instruction*);
+int				inst_aff(t_corewar *corewar, t_process *process, t_instruction*);
 
 #endif

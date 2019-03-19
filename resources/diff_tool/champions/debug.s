@@ -1,7 +1,7 @@
 .name "debug"
 .comment "debug source file"
 
-ld %1, r1
+ld %1, r1 ; 2 - 3 = 10 01 00 00 = 0x90
 ld %2, r2
 ld %3, r3
 ld %4, r4

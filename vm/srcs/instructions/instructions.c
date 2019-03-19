@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/13 14:52:44 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 13:44:41 by juazouz          ###   ########.fr       */
+/*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
+/*   Updated: 2019/03/19 16:04:32 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,46 +36,47 @@ int	((*g_op_func_tab[])(t_corewar*, t_process*, t_instruction*)) =
 int	inst_live(t_corewar *corewar, t_process *process, t_instruction *inst)
 {
 	int				player_id;
-	t_reg			reg_id;
 	int				i;
 
-	reg_id = inst->param.single_reg;
-	if (is_valid_reg(reg_id))
+	player_id = inst->param.single_dir;
+	i = 0;
+	while (i < corewar->players_count)
 	{
-		player_id = get_reg_value(process, reg_id);
-		i = 0;
-		while (i < corewar->players_count)
+		if (corewar->players[i].id == player_id)
 		{
-			if (corewar->players[i].id == player_id)
-			{
-				corewar->last_live = &corewar->players[i];
-				ft_printf("Le joueur %d(%s) est en vie.\n",
-					corewar->players[i].id,
-					&corewar->players[i].prog_name);
-				break ;
-			}
-			i++;
+			corewar->last_live = &corewar->players[i];
+			process->nbr_live++;
+			ft_printf("Le joueur %d(%s) est en vie.\n",
+				corewar->players[i].id,
+				&corewar->players[i].prog_name);
+			break ;
 		}
+		i++;
 	}
 	return (2);
 }
 
 int	inst_ld(t_corewar *corewar, t_process *process, t_instruction *inst)
 {
-	// t_instruction	*inst;
+	t_memaccess	memaccess;
+	int			tmp;
+	char		reg_id;
+	int			arg1_size;
 
-	// inst = process->pc;
-	// // Passer l'instruction ?
-	// // if (inst->param.multi.arg_type_2 != T_REG)
-	// // 	return (1);
-	// if (inst->param.multi.arg_type_1 == T_DIR)
-	// {
-
-	// }
-	(void)inst;
-	(void)corewar;
-	(void)process;
-	return (1);
+	if (inst->param.multi.arg_type_2 != REG_CODE)
+		return (2);
+	arg1_size = sizeof_arg_type(memaccess.arg_type);
+	memaccess.process = process;
+	memaccess.memsize = sizeof(t_reg);
+	memaccess.arg_type = inst->param.multi.arg_type_1;
+	tmp = to_little_endian32(*((int*)&inst->param.multi.parameters[0]));
+	memaccess.paramval = *(t_paramval*)&tmp;
+	generic_read(corewar, &memaccess);
+	reg_id = *((char*)&inst->param.multi.parameters[arg1_size]);
+	memaccess.arg_type = REG_CODE;
+	memaccess.paramval.reg_id = reg_id;
+	generic_write(corewar, &memaccess);
+	return (2 + sizeof_arg_type(REG_CODE) + arg1_size);
 }
 
 int	inst_st(t_corewar *corewar, t_process *process, t_instruction *inst)

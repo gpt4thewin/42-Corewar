@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   convert_endian32.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:51:32 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/13 15:51:49 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/19 16:21:05 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "commons.h"
 
 static void	swap(char *a, char *b)
 {
@@ -35,4 +37,20 @@ int			convert_endian32(int val)
 		return (res);
 	}
 	return (val);
+}
+
+void		convert_endian_size(void *ptr, int size)
+{
+	int			i;
+	int			num;
+
+	num = 1;
+	if (!(*(char *)&num == 1))
+		return ;
+	i = 0;
+	while (i < size / 2)
+	{
+		swap((char*)(ptr + i), (char*)(ptr - i - 1));
+		i++;
+	}
 }

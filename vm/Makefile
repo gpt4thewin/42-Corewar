@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/14 15:19:03 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/19 14:49:39 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		= corewar
 SOURCES		+=	main.c \
 				corewar.c \
 				corewar_run.c \
+				memory.c \
 				arg_utils.c \
 				instructions/instructions.c \
 				parse_parameters.c \
