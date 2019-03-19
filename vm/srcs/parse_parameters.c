@@ -6,15 +6,11 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 17:44:10 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 18:00:34 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-/*
-**
-*/
 
 static int		parse_number(int *pos, const char *av[])
 {
@@ -38,10 +34,6 @@ static int		parse_number(int *pos, const char *av[])
 	(*pos)++;
 	return (res);
 }
-
-/*
-**
-*/
 
 static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 {
@@ -68,10 +60,6 @@ static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 	corewar->players_count++;
 }
 
-/*
-**
-*/
-
 static void		parse_dump(t_corewar *corewar, int *pos, const char *av[])
 {
 	if (ft_strequ("-dump", av[*pos]))
@@ -81,45 +69,35 @@ static void		parse_dump(t_corewar *corewar, int *pos, const char *av[])
 	}
 }
 
-/*
-**
-*/
-static void		players_init_color(t_corewar * corewar)
+static void		players_init_color(t_corewar *corewar)
 {
 	int cpt;
 
 	cpt = 0;
-	while(cpt < corewar->players_count && cpt < MAX_PLAYERS)
+	while (cpt < corewar->players_count && cpt < MAX_PLAYERS)
 	{
 		corewar->players[cpt].color = cpt;
 		cpt++;
 	}
 }
 
-/*
-**
-*/
-
-static int		id_has_duplicate(t_corewar * corewar, int id)
+static int		id_has_duplicate(t_corewar *corewar, int id)
 {
 	int cpt;
 	int nb;
 
 	nb = 0;
 	cpt = corewar->players_count - 1;
-	if (id != -1)
+	while (cpt >= 0)
 	{
-		while(cpt >= 0)
-		{
-			if (corewar->players[cpt].id == id)
-				nb++;
-			cpt--;
-		}
+		if (corewar->players[cpt].id == id)
+			nb++;
+		cpt--;
 	}
 	return (nb);
 }
 
-static void		players_init_id(t_corewar * corewar)
+static void		players_init_id(t_corewar *corewar)
 {
 	int cpt;
 	int i;
@@ -140,10 +118,6 @@ static void		players_init_id(t_corewar * corewar)
 	}
 }
 
-/*
-**
-*/
-
 void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 {
 	int	i;
@@ -161,5 +135,4 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	}
 	players_init_color(corewar);
 	players_init_id(corewar);
-
 }
