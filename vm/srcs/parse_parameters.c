@@ -6,11 +6,15 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/18 16:21:43 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 15:07:08 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+/*
+**
+*/
 
 static int		parse_number(int *pos, const char *av[])
 {
@@ -35,15 +39,22 @@ static int		parse_number(int *pos, const char *av[])
 	return (res);
 }
 
+/*
+**
+*/
+
 static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 {
 	t_player	*player;
 
 	player = &corewar->players[corewar->players_count];
+	player->id = -1;
 	if (ft_strequ("-n", av[*pos]))
 	{
 		(*pos)++;
 		player->id = parse_number(pos, av);
+		if (player->id >= MAX_PLAYERS)
+			player->id = -1;
 	}
 	if (av[*pos] == NULL)
 		corewar_die(MSG_COMMAND_LINE_ERROR);
@@ -57,6 +68,10 @@ static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 	corewar->players_count++;
 }
 
+/*
+**
+*/
+
 static void		parse_dump(t_corewar *corewar, int *pos, const char *av[])
 {
 	if (ft_strequ("-dump", av[*pos]))
@@ -66,6 +81,56 @@ static void		parse_dump(t_corewar *corewar, int *pos, const char *av[])
 	}
 }
 
+/*
+**
+*/
+static void		players_init_color(t_corewar * corewar)
+{
+	int cpt;
+
+	cpt = corewar->players_count - 1;
+	while(cpt >= 0)
+	{
+		corewar->players[cpt].color = cpt;
+		cpt--;
+	}
+}
+
+/*
+**
+*/
+
+static void		players_init_id(t_corewar * corewar)
+{
+	int cpt;
+	int i;
+	int forbidden[corewar->players_count];
+
+	cpt = corewar->players_count - 1;
+	while(cpt >= 0)
+	{
+		forbidden[cpt] = corewar->players[cpt].id ;
+		cpt--;
+	}
+	cpt = corewar->players_count - 1;
+	i = corewar->players_count - 1;
+	while(cpt >= 0)
+	{
+		if (corewar->players[cpt].id == -1)
+		{
+				while (forbidden[i] != -1 && i >= 0)
+					i--;
+				corewar->players[cpt].id =i;
+				forbidden[i] = i;
+		}
+		cpt--;
+	}
+}
+
+/*
+**
+*/
+
 void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 {
 	int	i;
@@ -74,13 +139,14 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	parse_dump(corewar, &i, av);
 	if (ac == 1)
 	{
-		ft_printf("\033[1;31m");
-		ft_printf("ERROR: there is'nt a argument.\n");
-		ft_printf("\033[0m");
+		ft_printf("ERROR\n");
 		exit(EXIT_FAILURE);
 	}
 	while (i < ac)
 	{
 		parse_champion(corewar, &i, av);
 	}
+	players_init_color(corewar);
+	players_init_id(corewar);
+
 }
