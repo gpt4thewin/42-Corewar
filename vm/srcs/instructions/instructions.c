@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 16:04:32 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 16:35:03 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	inst_ld(t_corewar *corewar, t_process *process, t_instruction *inst)
 	memaccess.process = process;
 	memaccess.memsize = sizeof(t_reg);
 	memaccess.arg_type = inst->param.multi.arg_type_1;
-	tmp = to_little_endian32(*((int*)&inst->param.multi.parameters[0]));
+	param_at(inst, 0, inst->param.multi.arg_type_1, &tmp);
 	memaccess.paramval = *(t_paramval*)&tmp;
 	generic_read(corewar, &memaccess);
-	reg_id = *((char*)&inst->param.multi.parameters[arg1_size]);
+	param_at(inst, arg1_size, inst->param.multi.arg_type_1, &reg_id);
 	memaccess.arg_type = REG_CODE;
 	memaccess.paramval.reg_id = reg_id;
 	generic_write(corewar, &memaccess);
