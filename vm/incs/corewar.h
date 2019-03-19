@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/18 14:42:55 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 14:43:36 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,30 +84,29 @@ union							u_paramval
 };
 
 /*
+**	Enum of color for print dump.
+*/
+enum 							e_color
+{
+	RED,
+	GREEN,
+	YELLOW,
+	BLUE,
+	WHITE
+};
+
+/*
 **	Player.
 */
 
 struct						s_player
 {
 	int			id;
+	t_color		color;
 	int			last_check;
 	const char	*file;
 	char		prog_name[PROG_NAME_LENGTH + 1];
 	char		program[CHAMP_MAX_SIZE];
-};
-
-/*
-**	Color for print.
-*/
-
-enum 						s_color
-{
-
-	GREEN,
-	BLUE,
-	RED,
-	YELLOW,
-	WHITE
 };
 
 /*
@@ -140,7 +139,7 @@ struct						s_corewar
 	int			process_count;
 	t_list		*processes;
 	int			dump_nbr_cycle;
-	int			id_memory[MEM_SIZE];
+	t_color		id_memory[MEM_SIZE];
 	char		memory[MEM_SIZE];
 };
 
