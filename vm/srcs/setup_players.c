@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:50:54 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/18 16:30:18 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 15:08:15 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	setup_players(t_corewar *corewar)
 	i = 0;
 	while (i < corewar->players_count)
 	{
-
 		player = &corewar->players[i];
 		setup_player_at_pos(corewar, player, pos);
 		pos += offset;
