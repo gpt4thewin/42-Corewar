@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar_run.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 17:43:13 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 15:08:55 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ t_player	*corewar_run(t_corewar *corewar)
 	{
 		if (corewar->curr_cycle >= corewar->dump_nbr_cycle)
 		{
-			dump(corewar->memory);
+			dump(corewar);
 			return (NULL);
 		}
 		run_cycle(corewar);
