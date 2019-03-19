@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:51:32 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/19 16:21:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 19:00:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,24 @@ static void	swap(char *a, char *b)
 }
 
 int			convert_endian32(int val)
+{
+	int		num;
+	int		res;
+	char	*array;
+
+	num = 1;
+	if (*(char *)&num == 1)
+	{
+		res = val;
+		array = (char *)&res;
+		swap(&array[0], &array[3]);
+		swap(&array[1], &array[2]);
+		return (res);
+	}
+	return (val);
+}
+
+int			convert_endian16(short val)
 {
 	int		num;
 	int		res;

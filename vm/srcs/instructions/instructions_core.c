@@ -6,13 +6,13 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 16:42:28 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 15:53:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int	((*g_op_func_tab[])(t_corewar*, t_process*, t_instruction*)) =
+void	((*g_op_func_tab[])(t_corewar*, t_process*, t_paraminfo*)) =
 {
 	NULL,
 	inst_live,
@@ -33,12 +33,12 @@ int	((*g_op_func_tab[])(t_corewar*, t_process*, t_instruction*)) =
 	inst_aff,
 };
 
-int	inst_live(t_corewar *corewar, t_process *process, t_instruction *inst)
+void	inst_live(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	int				player_id;
 	int				i;
 
-	player_id = inst->param.single_dir;
+	player_id = param->values[0].dir;
 	i = 0;
 	while (i < corewar->players_count)
 	{
@@ -53,37 +53,32 @@ int	inst_live(t_corewar *corewar, t_process *process, t_instruction *inst)
 		}
 		i++;
 	}
-	return (2);
 }
 
-int	inst_zjmp(t_corewar *corewar, t_process *process, t_instruction *inst)
+void	inst_zjmp(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)inst;
+	(void)param;
 	(void)corewar;
 	(void)process;
-	return (1);
 }
 
-int	inst_fork(t_corewar *corewar, t_process *process, t_instruction *inst)
+void	inst_fork(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)inst;
+	(void)param;
 	(void)corewar;
 	(void)process;
-	return (1);
 }
 
-int	inst_lfork(t_corewar *corewar, t_process *process, t_instruction *inst)
+void	inst_lfork(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)inst;
+	(void)param;
 	(void)corewar;
 	(void)process;
-	return (1);
 }
 
-int	inst_aff(t_corewar *corewar, t_process *process, t_instruction *inst)
+void	inst_aff(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)inst;
+	(void)param;
 	(void)corewar;
 	(void)process;
-	return (1);
 }

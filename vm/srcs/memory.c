@@ -6,32 +6,52 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 17:18:41 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 16:43:43 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		read_memory(t_corewar *cw, int addr, size_t size, void *res)
+static int		get_address(t_memaccess *memaccess)
+{
+	int		addr;
+
+	addr = (memaccess->process->pc);
+	if (memaccess->no_idxmod)
+		addr %= IDX_MOD;
+	return (addr);
+}
+
+static void		read_memory(t_corewar *cw, t_memaccess *memaccess)
 {
 	int		i;
+	int		addr;
+	char	tmp;
 
+	addr = get_address(memaccess);
 	i = 0;
-	while (i < (int)size)
+	while (i < (int)memaccess->value_size)
 	{
-		*((char*)res + i) = *((char*)&cw->memory[(addr + i) % MEM_SIZE]);
+		tmp = *((char*)&cw->memory[addr % MEM_SIZE]);
+		*((char*)&memaccess->value + i) = tmp;
+		addr++;
 		i++;
 	}
 }
 
-static void		write_memory(t_corewar *cw, int addr, size_t size, void *ptr)
+static void		write_memory(t_corewar *cw, t_memaccess *memaccess)
 {
 	int		i;
+	int		addr;
+	char	tmp;
 
+	addr = get_address(memaccess);
 	i = 0;
-	while (i < (int)size)
+	while (i < (int)memaccess->value_size)
 	{
-		*((char*)&cw->memory[(addr + i) % MEM_SIZE]) = *((char*)ptr + i);
+		tmp = *((char*)&memaccess->value + i);
+		*((char*)&cw->memory[addr % MEM_SIZE]) = tmp;
+		addr++;
 		i++;
 	}
 }
@@ -60,8 +80,11 @@ void	generic_read(t_corewar *corewar, t_memaccess *memaccess)
 	}
 	else if (memaccess->arg_type == IND_CODE)
 	{
-		read_memory(corewar, memaccess->paramval.ind, memaccess->memsize,
-			&memaccess->value);
+		read_memory(corewar, memaccess);
+	}
+	else
+	{
+		ft_fprintf(2, "Error: invalid instruction\n");
 	}
 }
 
@@ -82,13 +105,12 @@ void	generic_write(t_corewar *corewar, t_memaccess *memaccess)
 			memaccess->success = false;
 		}
 	}
-	else if (memaccess->arg_type == DIR_CODE)
-	{
-		memaccess->paramval.dir = memaccess->value;
-	}
 	else if (memaccess->arg_type == IND_CODE)
 	{
-		write_memory(corewar, memaccess->paramval.ind, memaccess->memsize,
-			&memaccess->value);
+		write_memory(corewar, memaccess);
+	}
+	else
+	{
+		ft_fprintf(2, "Error: invalid instruction\n");
 	}
 }

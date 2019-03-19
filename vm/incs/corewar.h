@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/19 16:25:04 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 16:38:33 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "op.h"
+# include "commons.h"
 # include <stdio.h>
 # include <errno.h>
 # include <sys/types.h>
@@ -35,6 +36,7 @@ typedef struct s_instruction	t_instruction;
 typedef union u_paramval		t_paramval;
 typedef struct s_memaccess		t_memaccess;
 typedef enum e_color			t_color;
+typedef struct s_paraminfo		t_paraminfo;
 
 # if (REG_SIZE == 1)
 typedef char					t_reg;
@@ -83,9 +85,17 @@ union							u_paramval
 	t_dir		dir;
 };
 
+struct							s_paraminfo
+{
+	char			args_number;
+	t_arg_type		types[MAX_ARGS_NUMBER];
+	t_paramval		values[MAX_ARGS_NUMBER];
+};
+
 /*
 **	Enum of color for print dump.
 */
+
 enum 							e_color
 {
 	RED,
@@ -153,7 +163,8 @@ struct						s_memaccess
 	t_process	*process;
 	t_arg_type	arg_type;
 	t_paramval	paramval;
-	size_t		memsize;
+	t_bool		no_idxmod;
+	size_t		value_size;
 	int			value;
 	t_bool		success;
 };
@@ -247,30 +258,36 @@ int				to_little_endian32(int val);
 */
 
 t_bool			is_valid_reg(int reg_id);
-int				sizeof_arg_type(t_arg_type type);
+int				sizeof_param_type(t_arg_type type);
 void			param_at(t_instruction *inst, int pos, t_arg_type type, void *res);
+
+/*
+**	load_params.c
+*/
+
+t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo);
 
 /*
 **	Instructions processing.
 */
 
-extern	int	(*g_op_func_tab[])(t_corewar*, t_process*, t_instruction*);
+extern	void	(*g_op_func_tab[])(t_corewar*, t_process*, t_paraminfo*);
 
-int				inst_live(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_ld(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_st(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_add(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_sub(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_and(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_or(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_xor(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_zjmp(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_ldi(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_sti(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_fork(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_lld(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_lldi(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_lfork(t_corewar *corewar, t_process *process, t_instruction*);
-int				inst_aff(t_corewar *corewar, t_process *process, t_instruction*);
+void			inst_live(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_ld(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_st(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_add(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_sub(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_and(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_or(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_xor(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_zjmp(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_ldi(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_sti(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_fork(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_lld(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_lldi(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_lfork(t_corewar *corewar, t_process *process, t_paraminfo*);
+void			inst_aff(t_corewar *corewar, t_process *process, t_paraminfo*);
 
 #endif

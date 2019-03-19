@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/19 16:40:54 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/20 15:59:14 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,18 @@ SOURCES		+=	main.c \
 				instructions/instructions_math.c \
 				instructions/instructions_mem.c \
 				instructions/instructions_mem_long.c \
+				load_params.c \
 				parse_parameters.c \
 				setup_players.c \
 				process.c \
 				player.c \
 				dump.c \
 				endian_utils.c
+
 SRCS_DR		= srcs
 SRCS		= $(addprefix $(SRCS_DR)/, $(SOURCES))
 
-CM_SOURCES	= op.c
+CM_SOURCES	= op.c convert_endian32.c
 CM_SRCS_DR	= ../commons
 CM_SRCS		= $(addprefix $(CM_SRCS_DR)/, $(CM_SOURCES))
 
