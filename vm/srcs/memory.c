@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 15:54:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 17:18:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	generic_read(t_corewar *corewar, t_memaccess *memaccess)
 		reg_id = memaccess->paramval.reg_id;
 		if (is_valid_reg(reg_id))
 		{
-			memaccess->value = (int)memaccess->process->reg[reg_id];
+			memaccess->value = (int)memaccess->process->reg[reg_id - 1];
 		}
 		else
 		{
