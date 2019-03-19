@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 15:07:08 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 17:44:10 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ static void		players_init_color(t_corewar * corewar)
 {
 	int cpt;
 
-	cpt = corewar->players_count - 1;
-	while(cpt >= 0)
+	cpt = 0;
+	while(cpt < corewar->players_count && cpt < MAX_PLAYERS)
 	{
 		corewar->players[cpt].color = cpt;
-		cpt--;
+		cpt++;
 	}
 }
 
@@ -100,30 +100,43 @@ static void		players_init_color(t_corewar * corewar)
 **
 */
 
+static int		id_has_duplicate(t_corewar * corewar, int id)
+{
+	int cpt;
+	int nb;
+
+	nb = 0;
+	cpt = corewar->players_count - 1;
+	if (id != -1)
+	{
+		while(cpt >= 0)
+		{
+			if (corewar->players[cpt].id == id)
+				nb++;
+			cpt--;
+		}
+	}
+	return (nb);
+}
+
 static void		players_init_id(t_corewar * corewar)
 {
 	int cpt;
 	int i;
-	int forbidden[corewar->players_count];
 
-	cpt = corewar->players_count - 1;
-	while(cpt >= 0)
+	cpt = 0;
+	while (cpt < corewar->players_count)
 	{
-		forbidden[cpt] = corewar->players[cpt].id ;
-		cpt--;
-	}
-	cpt = corewar->players_count - 1;
-	i = corewar->players_count - 1;
-	while(cpt >= 0)
-	{
-		if (corewar->players[cpt].id == -1)
+		i = 0;
+		while (corewar->players[cpt].id == -1 && i < corewar->players_count)
 		{
-				while (forbidden[i] != -1 && i >= 0)
-					i--;
-				corewar->players[cpt].id =i;
-				forbidden[i] = i;
+			if (id_has_duplicate(corewar, i) == 0)
+				corewar->players[cpt].id = i;
+			i++;
 		}
-		cpt--;
+		if (id_has_duplicate(corewar, corewar->players[cpt].id) > 1)
+			corewar_die("Error player : duplicate id");
+		cpt++;
 	}
 }
 
