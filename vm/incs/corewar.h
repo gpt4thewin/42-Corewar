@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/19 14:43:36 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 16:03:38 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ union							u_paramval
 */
 enum 							e_color
 {
-	RED,
-	GREEN,
-	YELLOW,
 	BLUE,
+	GREEN,
+	RED,
+	YELLOW,
 	WHITE
 };
 
