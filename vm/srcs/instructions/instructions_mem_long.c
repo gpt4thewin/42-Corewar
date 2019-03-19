@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commons.h                                          :+:      :+:    :+:   */
+/*   instructions_mem_long.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/13 14:56:53 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/19 16:40:42 by juazouz          ###   ########.fr       */
+/*   Created: 2019/03/19 16:38:41 by juazouz           #+#    #+#             */
+/*   Updated: 2019/03/19 16:38:44 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMONS_H
-# define COMMONS_H
+#include "corewar.h"
 
-int		convert_endian32(int val);
+int	inst_lld(t_corewar *corewar, t_process *process, t_instruction *inst)
+{
+	(void)inst;
+	(void)corewar;
+	(void)process;
+	return (1);
+}
 
-#endif
+int	inst_lldi(t_corewar *corewar, t_process *process, t_instruction *inst)
+{
+	(void)inst;
+	(void)corewar;
+	(void)process;
+	return (1);
+}

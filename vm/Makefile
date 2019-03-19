@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/19 16:25:26 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/19 16:40:54 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ SOURCES		+=	main.c \
 				corewar_run.c \
 				memory.c \
 				arg_utils.c \
-				instructions/instructions.c \
+				instructions/instructions_core.c \
+				instructions/instructions_math.c \
+				instructions/instructions_mem.c \
+				instructions/instructions_mem_long.c \
 				parse_parameters.c \
 				setup_players.c \
 				process.c \
