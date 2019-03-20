@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 17:02:08 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:04:57 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,10 @@ void	generic_read(t_corewar *corewar, t_memaccess *memaccess)
 	int			reg_id;
 
 	memaccess->value = 0;
-	memaccess->success = true;
 	if (memaccess->arg_type == REG_CODE)
 	{
 		reg_id = memaccess->paramval.reg_id;
-		if (is_valid_reg(reg_id))
-		{
-			memaccess->value = (int)memaccess->process->reg[reg_id - 1];
-		}
-		else
-		{
-			memaccess->success = false;
-		}
+		memaccess->value = (int)memaccess->process->reg[reg_id - 1];
 	}
 	else if (memaccess->arg_type == DIR_CODE)
 	{
@@ -92,18 +84,10 @@ void	generic_write(t_corewar *corewar, t_memaccess *memaccess)
 {
 	int			reg_id;
 
-	memaccess->success = true;
 	if (memaccess->arg_type == REG_CODE)
 	{
 		reg_id = memaccess->paramval.reg_id;
-		if (is_valid_reg(reg_id))
-		{
-			memaccess->process->reg[reg_id - 1] = (t_reg)memaccess->value;
-		}
-		else
-		{
-			memaccess->success = false;
-		}
+		memaccess->process->reg[reg_id - 1] = (t_reg)memaccess->value;
 	}
 	else if (memaccess->arg_type == IND_CODE)
 	{
