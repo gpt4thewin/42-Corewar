@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 15:56:51 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 17:29:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 18:39:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo)
 		paraminfo->params[i].type = type;
 		if (!type_allowed(op, type, i))
 			return (false);
+		if (op->has_size_mod && type == DIR_CODE)
+			type = IND_CODE;
 		if (!load_param(type, &pos, &multi->parameters, &paraminfo->params[i].value))
 			return (false);
 		paraminfo->args_number++;
