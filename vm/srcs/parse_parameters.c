@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 18:03:04 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/20 14:59:54 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 	{
 		(*pos)++;
 		player->id = parse_number(pos, av);
-		if (player->id >= MAX_PLAYERS)
-			player->id = -1;
 	}
 	if (av[*pos] == NULL)
 		corewar_die(MSG_COMMAND_LINE_ERROR);
@@ -76,7 +74,7 @@ static void		players_init_color(t_corewar *corewar)
 	cpt = 0;
 	while (cpt < corewar->players_count && cpt < MAX_PLAYERS)
 	{
-		corewar->players[cpt].color = cpt;
+		corewar->players[cpt].color = cpt % MAX_PLAYERS;
 		cpt++;
 	}
 }
@@ -108,10 +106,11 @@ static void		players_init_id(t_corewar *corewar)
 		i = 0;
 		while (corewar->players[cpt].id == -1 && i < corewar->players_count)
 		{
-			if (id_has_duplicate(corewar, i) == 0)
+			if (corewar->players[cpt].id == -1 && id_has_duplicate(corewar, i) == 0)
 				corewar->players[cpt].id = i;
-			i++;
+					i++;
 		}
+		//ft_printf("player %d id : %d\n",cpt, corewar->players[cpt].id );
 		if (id_has_duplicate(corewar, corewar->players[cpt].id) > 1)
 			corewar_die("Error player : duplicate id");
 		cpt++;
@@ -126,8 +125,7 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	parse_dump(corewar, &i, av);
 	if (ac == 1)
 	{
-		ft_printf("ERROR\n");
-		exit(EXIT_FAILURE);
+		corewar_die("ERROR: no argument");
 	}
 	while (i < ac)
 	{
@@ -135,4 +133,5 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	}
 	players_init_color(corewar);
 	players_init_id(corewar);
+
 }
