@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:37:53 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 16:48:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:01:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	inst_ld(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
 
+	memaccess.idxmod = false;
 	memaccess.process = process;
 	memaccess.value_size = REG_SIZE;
 	memaccess.arg_type = param->types[0];
@@ -29,6 +30,7 @@ void	inst_st(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
 
+	memaccess.idxmod = false;
 	memaccess.value = process->reg[(int)param->values[0].reg_id - 1];
 	memaccess.process = process;
 	memaccess.value_size = REG_SIZE;

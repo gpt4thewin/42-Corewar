@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/20 16:56:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:03:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ struct						s_memaccess
 	t_process	*process;
 	t_arg_type	arg_type;
 	t_paramval	paramval;
-	t_bool		no_idxmod;
+	t_bool		idxmod;
 	size_t		value_size;
 	int			value;
 	t_bool		success;

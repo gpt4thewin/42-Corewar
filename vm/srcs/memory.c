@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 16:43:43 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:02:08 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		get_address(t_memaccess *memaccess)
 	int		addr;
 
 	addr = (memaccess->process->pc);
-	if (memaccess->no_idxmod)
+	if (memaccess->idxmod)
 		addr %= IDX_MOD;
 	return (addr);
 }
