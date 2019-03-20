@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/20 17:13:10 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:50:28 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef union u_paramval		t_paramval;
 typedef struct s_memaccess		t_memaccess;
 typedef enum e_color			t_color;
 typedef struct s_paraminfo		t_paraminfo;
+typedef struct s_param			t_param;
 
 # if (REG_SIZE == 1)
 typedef char					t_reg;
@@ -85,11 +86,20 @@ union							u_paramval
 	t_dir		dir;
 };
 
+/*
+**	Instruction type and value.
+*/
+
+struct	s_param
+{
+	t_arg_type	type;
+	t_paramval	value;
+};
+
 struct							s_paraminfo
 {
 	char			args_number;
-	t_arg_type		types[MAX_ARGS_NUMBER];
-	t_paramval		values[MAX_ARGS_NUMBER];
+	t_param			params[MAX_ARGS_NUMBER];
 };
 
 /*
@@ -161,8 +171,7 @@ struct						s_corewar
 struct						s_memaccess
 {
 	t_process	*process;
-	t_arg_type	param_type;
-	t_paramval	param_val;
+	t_param		param;
 	t_bool		idxmod;
 	size_t		value_size;
 	int			value;
@@ -175,7 +184,7 @@ struct						s_memaccess
 # define MAX_ARGS_TYPE_BYTES \
 	(MAX_ARGS_NUMBER / 4 + (MAX_ARGS_NUMBER % 4 > 0 ? 1 : 0))
 
-struct						s_param
+struct						s_inst_param
 {
 	unsigned char	arg_type_4:2;
 	unsigned char	arg_type_3:2;
@@ -184,18 +193,18 @@ struct						s_param
 	char			parameters[0];
 };
 
-union						u_param
+union						u_inst_param
 {
-	t_dir			single_dir;
-	struct s_param	multi;
-	char			debug8;
-	char			debug16;
+	t_dir				single_dir;
+	struct s_inst_param	multi;
+	char				debug8;
+	char				debug16;
 };
 
 struct						s_instruction
 {
-	char			opcode;
-	union u_param	param;
+	char				opcode;
+	union u_inst_param	param;
 }__attribute__((packed, aligned(1)));
 
 /*

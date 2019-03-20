@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 15:53:15 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:30:05 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	inst_live(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	int				player_id;
 	int				i;
 
-	player_id = param->values[0].dir;
+	player_id = param->params[0].value.dir;
 	i = 0;
 	while (i < corewar->players_count)
 	{

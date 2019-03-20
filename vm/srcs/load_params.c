@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 15:56:51 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 16:03:17 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:29:29 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ static t_bool	load_param(t_arg_type type, size_t *pos, void *ptr,
 
 t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo)
 {
-	int				i;
-	size_t			pos;
-	char			types;
-	struct s_param	*multi;
-	t_arg_type		type;
+	int					i;
+	size_t				pos;
+	char				types;
+	struct s_inst_param	*multi;
+	t_arg_type			type;
 
 	ft_bzero(paraminfo, sizeof(t_paraminfo));
 	if (!op->has_argcode)
 	{
 		paraminfo->args_number = 1;
-		paraminfo->types[0] = DIR_CODE;
-		paraminfo->values[0].dir = inst->param.single_dir;
+		paraminfo->params[0].type = DIR_CODE;
+		paraminfo->params[0].value.dir = inst->param.single_dir;
 		return (true);
 	}
 	multi = &inst->param.multi;
@@ -70,10 +70,10 @@ t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo)
 	while (i < op->args_number)
 	{
 		type = ((types << (2 * i)) & 0xc0) >> 6;
-		paraminfo->types[i] = type;
+		paraminfo->params[i].type = type;
 		if (!type_allowed(op, type, i))
 			return (false);
-		if (!load_param(type, &pos, &multi->parameters, &paraminfo->values[i]))
+		if (!load_param(type, &pos, &multi->parameters, &paraminfo->params[i].value))
 			return (false);
 		paraminfo->args_number++;
 		i++;

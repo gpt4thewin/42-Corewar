@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 16:47:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:27:06 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int			get_params_size(t_paraminfo *paraminfo)
 	i = 0;
 	while (i < paraminfo->args_number)
 	{
-		res += sizeof_param_type(paraminfo->types[i]);
+		res += sizeof_param_type(paraminfo->params[i].type);
 		i++;
 	}
 	return (res);

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 17:13:58 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:52:13 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ void	generic_read(t_corewar *corewar, t_memaccess *memaccess)
 	int			reg_id;
 
 	memaccess->value = 0;
-	if (memaccess->param_type == REG_CODE)
+	if (memaccess->param.type == REG_CODE)
 	{
-		reg_id = memaccess->param_val.reg_id;
+		reg_id = memaccess->param.value.reg_id;
 		memaccess->value = (int)memaccess->process->reg[reg_id - 1];
 	}
-	else if (memaccess->param_type == DIR_CODE)
+	else if (memaccess->param.type == DIR_CODE)
 	{
-		memaccess->value = (int)memaccess->param_val.dir;
+		memaccess->value = (int)memaccess->param.value.dir;
 	}
-	else if (memaccess->param_type == IND_CODE)
+	else if (memaccess->param.type == IND_CODE)
 	{
 		read_memory(corewar, memaccess);
 	}
@@ -84,12 +84,12 @@ void	generic_write(t_corewar *corewar, t_memaccess *memaccess)
 {
 	int			reg_id;
 
-	if (memaccess->param_type == REG_CODE)
+	if (memaccess->param.type == REG_CODE)
 	{
-		reg_id = memaccess->param_val.reg_id;
+		reg_id = memaccess->param.value.reg_id;
 		memaccess->process->reg[reg_id - 1] = (t_reg)memaccess->value;
 	}
-	else if (memaccess->param_type == IND_CODE)
+	else if (memaccess->param.type == IND_CODE)
 	{
 		write_memory(corewar, memaccess);
 	}
