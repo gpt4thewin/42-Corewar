@@ -6,15 +6,11 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 15:07:08 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/20 14:59:54 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-/*
-**
-*/
 
 static int		parse_number(int *pos, const char *av[])
 {
@@ -39,10 +35,6 @@ static int		parse_number(int *pos, const char *av[])
 	return (res);
 }
 
-/*
-**
-*/
-
 static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 {
 	t_player	*player;
@@ -53,8 +45,6 @@ static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 	{
 		(*pos)++;
 		player->id = parse_number(pos, av);
-		if (player->id >= MAX_PLAYERS)
-			player->id = -1;
 	}
 	if (av[*pos] == NULL)
 		corewar_die(MSG_COMMAND_LINE_ERROR);
@@ -68,10 +58,6 @@ static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 	corewar->players_count++;
 }
 
-/*
-**
-*/
-
 static void		parse_dump(t_corewar *corewar, int *pos, const char *av[])
 {
 	if (ft_strequ("-dump", av[*pos]))
@@ -81,55 +67,55 @@ static void		parse_dump(t_corewar *corewar, int *pos, const char *av[])
 	}
 }
 
-/*
-**
-*/
-static void		players_init_color(t_corewar * corewar)
+static void		players_init_color(t_corewar *corewar)
 {
 	int cpt;
 
-	cpt = corewar->players_count - 1;
-	while(cpt >= 0)
+	cpt = 0;
+	while (cpt < corewar->players_count && cpt < MAX_PLAYERS)
 	{
-		corewar->players[cpt].color = cpt;
-		cpt--;
+		corewar->players[cpt].color = cpt % MAX_PLAYERS;
+		cpt++;
 	}
 }
 
-/*
-**
-*/
+static int		id_has_duplicate(t_corewar *corewar, int id)
+{
+	int cpt;
+	int nb;
 
-static void		players_init_id(t_corewar * corewar)
+	nb = 0;
+	cpt = corewar->players_count - 1;
+	while (cpt >= 0)
+	{
+		if (corewar->players[cpt].id == id)
+			nb++;
+		cpt--;
+	}
+	return (nb);
+}
+
+static void		players_init_id(t_corewar *corewar)
 {
 	int cpt;
 	int i;
-	int forbidden[corewar->players_count];
 
-	cpt = corewar->players_count - 1;
-	while(cpt >= 0)
+	cpt = 0;
+	while (cpt < corewar->players_count)
 	{
-		forbidden[cpt] = corewar->players[cpt].id ;
-		cpt--;
-	}
-	cpt = corewar->players_count - 1;
-	i = corewar->players_count - 1;
-	while(cpt >= 0)
-	{
-		if (corewar->players[cpt].id == -1)
+		i = 0;
+		while (corewar->players[cpt].id == -1 && i < corewar->players_count)
 		{
-				while (forbidden[i] != -1 && i >= 0)
-					i--;
-				corewar->players[cpt].id =i;
-				forbidden[i] = i;
+			if (corewar->players[cpt].id == -1 && id_has_duplicate(corewar, i) == 0)
+				corewar->players[cpt].id = i;
+					i++;
 		}
-		cpt--;
+		//ft_printf("player %d id : %d\n",cpt, corewar->players[cpt].id );
+		if (id_has_duplicate(corewar, corewar->players[cpt].id) > 1)
+			corewar_die("Error player : duplicate id");
+		cpt++;
 	}
 }
-
-/*
-**
-*/
 
 void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 {
@@ -139,8 +125,7 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	parse_dump(corewar, &i, av);
 	if (ac == 1)
 	{
-		ft_printf("ERROR\n");
-		exit(EXIT_FAILURE);
+		corewar_die("ERROR: no argument");
 	}
 	while (i < ac)
 	{

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/20 16:38:33 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/20 16:56:06 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ struct							s_paraminfo
 
 enum 							e_color
 {
-	RED,
-	GREEN,
-	YELLOW,
 	BLUE,
+	GREEN,
+	RED,
+	YELLOW,
 	WHITE
 };
 
