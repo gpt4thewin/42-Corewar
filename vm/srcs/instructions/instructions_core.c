@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 17:30:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 18:41:55 by mbakhti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,17 @@ void	inst_live(t_corewar *corewar, t_process *process, t_paraminfo *param)
 
 void	inst_zjmp(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)param;
-	(void)corewar;
-	(void)process;
+	t_memaccess	memaccess;
+	int			val;
+
+	if (process->carry)
+	{
+		memaccess.idxmod = true;
+		memaccess.process = process;
+		memaccess.value_size = IND_SIZE;
+		val = generic_read(corewar, &memaccess, param->params[0]);
+		process->pc += (val % IDX_MOD);
+	}
 }
 
 void	inst_fork(t_corewar *corewar, t_process *process, t_paraminfo *param)

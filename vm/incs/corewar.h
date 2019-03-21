@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/21 18:17:32 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/21 19:11:51 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ struct						s_instruction
 t_corewar		*corewar_new(void);
 t_player		*corewar_run(t_corewar *corewar);
 void			corewar_die(char *msg);
+void			corewar_add_process(t_corewar *corewar, t_process *process);
 t_reg			corewar_reg_read(t_corewar *corewar, int pc, int addr);
 void			corewar_reg_write(t_corewar *corewar, int pc, int addr, t_reg val);
 
