@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/21 18:55:44 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 19:11:51 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ struct						s_corewar
 	int			process_count;
 	t_list		*processes;
 	int			dump_nbr_cycle;
-	t_color		id_memory[MEM_SIZE];
+	t_color		map_memory_color[MEM_SIZE];
 	char		memory[MEM_SIZE];
 };
 

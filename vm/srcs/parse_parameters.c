@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 14:59:54 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/20 16:51:18 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ static void		players_init_id(t_corewar *corewar)
 		i = 0;
 		while (corewar->players[cpt].id == -1 && i < corewar->players_count)
 		{
-			if (corewar->players[cpt].id == -1 && id_has_duplicate(corewar, i) == 0)
+			if (corewar->players[cpt].id == -1
+				&& id_has_duplicate(corewar, i) == 0)
 				corewar->players[cpt].id = i;
 					i++;
 		}
@@ -133,5 +134,4 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	}
 	players_init_color(corewar);
 	players_init_id(corewar);
-
 }

@@ -60,7 +60,7 @@ void	inst_zjmp(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	t_memaccess	memaccess;
 	int			val;
 
-	if(process->carry)
+	if (process->carry)
 	{
 		memaccess.idxmod = true;
 		memaccess.process = process;

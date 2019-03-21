@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:58:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 19:01:16 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 19:26:25 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_corewar	*corewar_new(void)
 	res->next_check_cycle = CYCLE_TO_DIE;
 	while(i < MEM_SIZE)
 	{
-		res->id_memory[i] = WHITE;
+		res->map_memory_color[i] = WHITE;
 		i++;
 	}
 	return (res);

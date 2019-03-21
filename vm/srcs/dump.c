@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:44:00 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 14:44:43 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/21 19:08:19 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	print_hex_color(t_corewar *corewar, int pos)
 {
 	int i;
 
-	i = corewar->id_memory[pos];
+	i = corewar->map_memory_color[pos];
 	if (i == RED)
 	{
 		 ft_printf("\033[1;31m");
@@ -35,10 +35,8 @@ static void	print_hex_color(t_corewar *corewar, int pos)
 	}
 	ft_printf ("%02.2hhx", corewar->memory[pos]);
 	ft_printf("\033[0m");
-
-
-
 }
+
 // Taille de MEM_SIZE
 void		dump(t_corewar *corewar)
 {
