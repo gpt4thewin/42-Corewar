@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:58:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 14:45:04 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/21 18:55:56 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,10 @@ void		corewar_die(char *msg)
 {
 	ft_fprintf(2, "%s\n", msg);
 	exit(EXIT_FAILURE);
+}
+
+void		corewar_add_process(t_corewar *corewar, t_process *process)
+{
+	ft_lstadd(&corewar->processes, ft_lstnew(process, sizeof(t_process)));
+	corewar->process_count++;
 }
