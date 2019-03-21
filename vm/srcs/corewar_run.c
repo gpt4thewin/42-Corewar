@@ -6,13 +6,13 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 17:27:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 13:28:44 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int			get_params_size(t_paraminfo *paraminfo)
+static int			get_params_size(t_paraminfo *paraminfo, t_bool size_mod)
 {
 	int	i;
 	int	res;
@@ -21,7 +21,7 @@ static int			get_params_size(t_paraminfo *paraminfo)
 	i = 0;
 	while (i < paraminfo->args_number)
 	{
-		res += sizeof_param_type(paraminfo->params[i].type);
+		res += sizeof_param_type(paraminfo->params[i].type, size_mod);
 		i++;
 	}
 	return (res);
@@ -61,9 +61,10 @@ static void			run_process_cycle(t_corewar *corewar, t_process *process)
 	// TODO verify arguments type.
 	func = g_op_func_tab[(int)op->opcode];
 	func(corewar, process, &paraminfo);
-	if (op->has_argcode)
-		process->pc += 1 + get_params_size(&paraminfo);
 	process->pc++;
+	if (op->has_argcode)
+		process->pc++;
+	process->pc += get_params_size(&paraminfo, op->has_size_mod);
 	process->next_cycle += op->cycles;
 }
 
