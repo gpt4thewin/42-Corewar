@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:37:53 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 17:51:16 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 12:39:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	inst_ldi(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
 	int			sum;
+	int			reg_id;
 
+	reg_id = param->params[2].value.reg_id;
 	memaccess.idxmod = true;
 	memaccess.process = process;
 	memaccess.value_size = REG_SIZE;
@@ -50,6 +52,9 @@ void	inst_ldi(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	sum = memaccess.value;
 	sum += param->params[1].value.dir;
 	memaccess.param = param->params[2];
+	if (is_valid_reg(reg_id))
+		process->reg[reg_id - 1] = sum;
+	process->carry = (sum == 0);
 }
 
 void	inst_sti(t_corewar *corewar, t_process *process, t_paraminfo *param)
