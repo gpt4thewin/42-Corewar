@@ -58,7 +58,18 @@ void	inst_ldi(t_corewar *corewar, t_process *process, t_paraminfo *param)
 
 void	inst_sti(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)param;
-	(void)corewar;
-	(void)process;
+	t_memaccess	memaccess;
+	int			reg_id;
+	int			val;
+	t_param		sum_param;
+
+	reg_id = param->params[0].value.reg_id;
+	val = process_get_reg(process, reg_id);
+	memaccess.idxmod = true;
+	memaccess.process = process;
+	memaccess.value_size = REG_SIZE;
+	sum_param.value.ind = generic_read(corewar, &memaccess, param->params[1]);
+	sum_param.value.ind += generic_read(corewar, &memaccess, param->params[2]);
+	sum_param.type = IND_CODE;
+	generic_write(corewar, &memaccess, sum_param, val);
 }
