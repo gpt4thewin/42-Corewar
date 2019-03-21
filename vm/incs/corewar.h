@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/21 13:29:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 15:59:24 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ int				to_little_endian32(int val);
 */
 
 t_bool			is_valid_reg(int reg_id);
-int				sizeof_param_type(t_arg_type type, t_bool size_mod);
+int				sizeof_param_type(t_arg_type type);
 void			param_at(t_instruction *inst, int pos, t_arg_type type, void *res);
 
 /*

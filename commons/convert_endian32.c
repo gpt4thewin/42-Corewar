@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:51:32 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/19 19:00:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 15:46:59 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			convert_endian32(int val)
 int			convert_endian16(short val)
 {
 	int		num;
-	int		res;
+	short	res;
 	char	*array;
 
 	num = 1;
@@ -50,8 +50,7 @@ int			convert_endian16(short val)
 	{
 		res = val;
 		array = (char *)&res;
-		swap(&array[0], &array[3]);
-		swap(&array[1], &array[2]);
+		swap(&array[0], &array[1]);
 		return (res);
 	}
 	return (val);

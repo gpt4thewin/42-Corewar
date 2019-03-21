@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/03/14 19:36:36 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 14:02:31 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 # define REG_CODE			1
 # define DIR_CODE			2
 # define IND_CODE			3
+
+/*
+**	Valeur directe avec t_op.has_size_mod = true
+*/
+
+# define DIR_MOD_CODE		4
 
 # define MAX_ARGS_NUMBER	4
 # define MAX_PLAYERS		4

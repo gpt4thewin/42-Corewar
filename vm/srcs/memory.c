@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 13:19:18 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 16:10:26 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void	generic_read(t_corewar *corewar, t_memaccess *memaccess)
 	else if (memaccess->param.type == DIR_CODE)
 	{
 		memaccess->value = (int)memaccess->param.value.dir;
+	}
+	else if (memaccess->param.type == DIR_MOD_CODE)
+	{
+		memaccess->value = (int)memaccess->param.value.ind;
 	}
 	else if (memaccess->param.type == IND_CODE)
 	{

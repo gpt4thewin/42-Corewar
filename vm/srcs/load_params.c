@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 15:56:51 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 18:39:34 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 16:13:35 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static t_bool	load_param(t_arg_type type, size_t *pos, void *ptr,
 		res.dir = convert_endian32(res.dir);
 		(*pos) += sizeof(t_dir);
 	}
-	else if (type == IND_CODE)
+	else if (type == IND_CODE || type == DIR_MOD_CODE)
 	{
-		res.ind = *((t_dir*)ptr + (*pos));
+		ft_memcpy(&res.ind, ptr + (*pos), sizeof(t_ind));
 		res.ind = convert_endian16(res.ind);
 		(*pos) += sizeof(t_ind);
 	}
@@ -70,11 +70,11 @@ t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo)
 	while (i < op->args_number)
 	{
 		type = ((types << (2 * i)) & 0xc0) >> 6;
-		paraminfo->params[i].type = type;
 		if (!type_allowed(op, type, i))
 			return (false);
 		if (op->has_size_mod && type == DIR_CODE)
-			type = IND_CODE;
+			type = DIR_MOD_CODE;
+		paraminfo->params[i].type = type;
 		if (!load_param(type, &pos, &multi->parameters, &paraminfo->params[i].value))
 			return (false);
 		paraminfo->args_number++;
