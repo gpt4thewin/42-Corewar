@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:58:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 14:45:04 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/21 19:08:53 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_corewar	*corewar_new(void)
 	res->cycle_to_die = CYCLE_TO_DIE;
 	while(i < MEM_SIZE)
 	{
-		res->id_memory[i] = WHITE;
+		res->map_memory_color[i] = WHITE;
 		i++;
 	}
 	return (res);
