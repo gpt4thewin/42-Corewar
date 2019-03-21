@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 17:52:13 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 13:19:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		get_address(t_memaccess *memaccess)
 {
 	int		addr;
 
-	addr = (memaccess->process->pc);
+	addr = (memaccess->process->pc + memaccess->param.value.ind);
 	if (memaccess->idxmod)
 		addr %= IDX_MOD;
 	return (addr);
@@ -32,7 +32,7 @@ static void		read_memory(t_corewar *cw, t_memaccess *memaccess)
 	i = 0;
 	while (i < (int)memaccess->value_size)
 	{
-		tmp = *((char*)&cw->memory[addr % MEM_SIZE]);
+		tmp = *((char*)&cw->memory[(MEM_SIZE + addr) % MEM_SIZE]);
 		*((char*)&memaccess->value + i) = tmp;
 		addr++;
 		i++;
@@ -50,7 +50,7 @@ static void		write_memory(t_corewar *cw, t_memaccess *memaccess)
 	while (i < (int)memaccess->value_size)
 	{
 		tmp = *((char*)&memaccess->value + i);
-		*((char*)&cw->memory[addr % MEM_SIZE]) = tmp;
+		*((char*)&cw->memory[(MEM_SIZE + addr) % MEM_SIZE]) = tmp;
 		addr++;
 		i++;
 	}
