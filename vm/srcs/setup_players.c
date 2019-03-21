@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:50:54 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 14:52:26 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/20 17:06:45 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memcpy_color(t_corewar *corewar, t_player *player, size_t num,
 	while (i < num)
 	{
 		((unsigned char*)dst)[pos + i] = ((unsigned char*)src)[i];
-		corewar->id_memory[pos + i] = player->color;
+		corewar->map_memory_color[pos + i] = player->color;
 		i++;
 	}
 	return (dst);
@@ -38,7 +38,7 @@ void	setup_player_at_pos(t_corewar *corewar, t_player *player, size_t pos)
 	t_process	*entry_process;
 
 	ft_memcpy_color(corewar, player, CHAMP_MAX_SIZE, pos);
-	corewar->id_memory[pos] = player->color;
+	corewar->map_memory_color[pos] = player->color;
 	entry_process = process_new();
 	entry_process->pc = pos;
 	entry_process->player = player;
