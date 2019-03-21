@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 16:00:32 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 16:32:49 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void			run_process_cycle(t_corewar *corewar, t_process *process)
 	void			(*func)(t_corewar*, t_process*, t_paraminfo*);
 	t_paraminfo		paraminfo;
 
-	inst = ((t_instruction*)&corewar->memory[process->pc]);
+	inst = ((t_instruction*)&corewar->memory[get_physical_addr(process->pc)]);
 	op = get_op(inst->opcode);
 	if (op == NULL
 		|| !load_params(op, inst, &paraminfo))

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/21 15:59:24 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 16:27:04 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ void			corewar_reg_write(t_corewar *corewar, int pc, int addr, t_reg val);
 **	Memory.
 */
 
+int				get_physical_addr(int addr);
 void			generic_read(t_corewar *corewar, t_memaccess *memaccess);
 void			generic_write(t_corewar *corewar, t_memaccess *memaccess);
 

@@ -6,13 +6,23 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 16:10:26 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 16:40:46 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int		get_address(t_memaccess *memaccess)
+int				get_physical_addr(int addr)
+{
+	if (addr < 0)
+	{
+		addr += MEM_SIZE;
+		addr += (-addr / MEM_SIZE) * MEM_SIZE;
+	}
+	return (addr % MEM_SIZE);
+}
+
+static int		get_virtual_addr(t_memaccess *memaccess)
 {
 	int		addr;
 
@@ -28,11 +38,11 @@ static void		read_memory(t_corewar *cw, t_memaccess *memaccess)
 	int		addr;
 	char	tmp;
 
-	addr = get_address(memaccess);
+	addr = get_virtual_addr(memaccess);
 	i = 0;
 	while (i < (int)memaccess->value_size)
 	{
-		tmp = *((char*)&cw->memory[(MEM_SIZE + addr) % MEM_SIZE]);
+		tmp = *((char*)&cw->memory[get_physical_addr(addr)]);
 		*((char*)&memaccess->value + i) = tmp;
 		addr++;
 		i++;
@@ -45,12 +55,12 @@ static void		write_memory(t_corewar *cw, t_memaccess *memaccess)
 	int		addr;
 	char	tmp;
 
-	addr = get_address(memaccess);
+	addr = get_virtual_addr(memaccess);
 	i = 0;
 	while (i < (int)memaccess->value_size)
 	{
 		tmp = *((char*)&memaccess->value + i);
-		*((char*)&cw->memory[(MEM_SIZE + addr) % MEM_SIZE]) = tmp;
+		*((char*)&cw->memory[get_physical_addr(addr)]) = tmp;
 		addr++;
 		i++;
 	}
