@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 16:40:46 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 17:48:57 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		get_virtual_addr(t_memaccess *memaccess)
 {
 	int		addr;
 
-	addr = (memaccess->process->pc + memaccess->param.value.ind);
+	addr = (memaccess->process->pc + memaccess->_param.value.ind);
 	if (memaccess->idxmod)
 		addr %= IDX_MOD;
 	return (addr);
@@ -43,7 +43,7 @@ static void		read_memory(t_corewar *cw, t_memaccess *memaccess)
 	while (i < (int)memaccess->value_size)
 	{
 		tmp = *((char*)&cw->memory[get_physical_addr(addr)]);
-		*((char*)&memaccess->value + i) = tmp;
+		*((char*)&memaccess->_value + i) = tmp;
 		addr++;
 		i++;
 	}
@@ -59,52 +59,60 @@ static void		write_memory(t_corewar *cw, t_memaccess *memaccess)
 	i = 0;
 	while (i < (int)memaccess->value_size)
 	{
-		tmp = *((char*)&memaccess->value + i);
+		tmp = *((char*)&memaccess->_value + i);
 		*((char*)&cw->memory[get_physical_addr(addr)]) = tmp;
 		addr++;
 		i++;
 	}
 }
 
-void	generic_read(t_corewar *corewar, t_memaccess *memaccess)
+int		generic_read(t_corewar *corewar, t_memaccess *memaccess,
+	t_param param)
 {
-	int			reg_id;
+	int	reg_id;
+	int	res;
 
-	memaccess->value = 0;
-	if (memaccess->param.type == REG_CODE)
+	res = 0;
+	memaccess->_param = param;
+	if (param.type == REG_CODE)
 	{
-		reg_id = memaccess->param.value.reg_id;
-		memaccess->value = (int)memaccess->process->reg[reg_id - 1];
+		reg_id = param.value.reg_id;
+		res = (int)memaccess->process->reg[reg_id - 1];
 	}
-	else if (memaccess->param.type == DIR_CODE)
+	else if (param.type == DIR_CODE)
 	{
-		memaccess->value = (int)memaccess->param.value.dir;
+		res = (int)param.value.dir;
 	}
-	else if (memaccess->param.type == DIR_MOD_CODE)
+	else if (param.type == DIR_MOD_CODE)
 	{
-		memaccess->value = (int)memaccess->param.value.ind;
+		res = (int)param.value.ind;
 	}
-	else if (memaccess->param.type == IND_CODE)
+	else if (param.type == IND_CODE)
 	{
 		read_memory(corewar, memaccess);
+		res = memaccess->_value;
 	}
 	else
 	{
 		ft_fprintf(2, "Error: invalid instruction\n");
 	}
+	return (res);
 }
 
-void	generic_write(t_corewar *corewar, t_memaccess *memaccess)
+void	generic_write(t_corewar *corewar, t_memaccess *memaccess, t_param param,
+	int val)
 {
 	int			reg_id;
 
-	if (memaccess->param.type == REG_CODE)
+	memaccess->_param = param;
+	if (param.type == REG_CODE)
 	{
-		reg_id = memaccess->param.value.reg_id;
-		memaccess->process->reg[reg_id - 1] = (t_reg)memaccess->value;
+		reg_id = param.value.reg_id;
+		memaccess->process->reg[reg_id - 1] = (t_reg)val;
 	}
-	else if (memaccess->param.type == IND_CODE)
+	else if (param.type == IND_CODE)
 	{
+		memaccess->_value = val;
 		write_memory(corewar, memaccess);
 	}
 	else

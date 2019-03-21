@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:37:53 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 12:39:48 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 17:58:30 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,45 @@
 void	inst_ld(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
+	int			val;
 
 	memaccess.idxmod = true;
 	memaccess.process = process;
 	memaccess.value_size = REG_SIZE;
-	memaccess.param = param->params[0];
-	generic_read(corewar, &memaccess);
-	process->reg[(int)param->params[1].value.reg_id - 1] = memaccess.value;
-	process->carry = (memaccess.value == 0);
+	val = generic_read(corewar, &memaccess, param->params[0]);
+	process->reg[(int)param->params[1].value.reg_id - 1] = val;
+	process->carry = (memaccess._value == 0);
 }
 
 void	inst_st(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
+	int			val;
 
 	memaccess.idxmod = true;
-	memaccess.value = process->reg[(int)param->params[0].value.reg_id - 1];
+	val = process->reg[(int)param->params[0].value.reg_id - 1];
 	memaccess.process = process;
 	memaccess.value_size = REG_SIZE;
-	memaccess.param = param->params[1];
-	generic_write(corewar, &memaccess);
+	generic_write(corewar, &memaccess, param->params[1], val);
 }
 
 void	inst_ldi(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
-	int			sum;
+	int			val;
 	int			reg_id;
+	t_param		sum_param;
 
-	reg_id = param->params[2].value.reg_id;
 	memaccess.idxmod = true;
 	memaccess.process = process;
 	memaccess.value_size = REG_SIZE;
-	memaccess.param = param->params[0];
-	generic_read(corewar, &memaccess);
-	sum = memaccess.value;
-	sum += param->params[1].value.dir;
-	memaccess.param = param->params[2];
-	if (is_valid_reg(reg_id))
-		process->reg[reg_id - 1] = sum;
-	process->carry = (sum == 0);
+	sum_param.value.ind = generic_read(corewar, &memaccess, param->params[0]);
+	sum_param.value.ind += generic_read(corewar, &memaccess, param->params[1]);
+	sum_param.type = IND_CODE;
+	reg_id = param->params[2].value.reg_id;
+	val = generic_read(corewar, &memaccess, sum_param);
+	process_set_reg(process, reg_id, val);
+	process->carry = (val == 0);
 }
 
 void	inst_sti(t_corewar *corewar, t_process *process, t_paraminfo *param)

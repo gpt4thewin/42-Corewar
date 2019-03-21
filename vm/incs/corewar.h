@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/21 16:27:04 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 17:56:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,10 +171,10 @@ struct						s_corewar
 struct						s_memaccess
 {
 	t_process	*process;
-	t_param		param;
 	t_bool		idxmod;
 	size_t		value_size;
-	int			value;
+	t_param		_param;
+	int			_value;
 };
 
 /*
@@ -222,8 +222,10 @@ void			corewar_reg_write(t_corewar *corewar, int pc, int addr, t_reg val);
 */
 
 int				get_physical_addr(int addr);
-void			generic_read(t_corewar *corewar, t_memaccess *memaccess);
-void			generic_write(t_corewar *corewar, t_memaccess *memaccess);
+int				generic_read(t_corewar *corewar, t_memaccess *memaccess,
+	t_param param);
+void			generic_write(t_corewar *corewar, t_memaccess *memaccess,
+	t_param param, int val);
 
 /*
 **	Memory dump command line option.
@@ -255,6 +257,8 @@ void			player_load(t_player *player);
 
 t_process		*process_new(void);
 t_process		*process_copy(t_process *process);
+void			process_set_reg(t_process *process, char reg_id, t_reg val);
+t_reg			process_get_reg(t_process *process, char reg_id);
 
 /*
 **	Utils.

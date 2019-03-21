@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 15:12:12 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 15:14:19 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 17:59:19 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,26 @@ t_process	*process_copy(t_process *process)
 	res = process_new();
 	ft_memcpy(res, process, sizeof(t_process));
 	return (res);
+}
+
+/*
+**	Tries to set the specified registry value.
+*/
+
+void	process_set_reg(t_process *process, char reg_id, t_reg val)
+{
+	if (is_valid_reg(reg_id))
+		process->reg[reg_id - 1] = val;
+}
+
+/*
+**	Tries to read the specified registry value. If reg_id is not valid,
+**	returns 0.
+*/
+
+t_reg	process_get_reg(t_process *process, char reg_id)
+{
+	if (!is_valid_reg(reg_id))
+		return (0);
+	return (process->reg[reg_id - 1]);
 }
