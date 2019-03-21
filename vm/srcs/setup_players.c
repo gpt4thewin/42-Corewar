@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_players.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:50:54 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 14:52:26 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/21 18:18:07 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	setup_player_at_pos(t_corewar *corewar, t_player *player, size_t pos)
 	entry_process = process_new();
 	entry_process->pc = pos;
 	entry_process->player = player;
+	process_set_reg(entry_process, 1, player->id);
 	ft_lstadd(&corewar->processes, ft_lstnew(entry_process, sizeof(t_process)));
 }
 
