@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 15:12:12 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 18:37:22 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 18:34:32 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_process	*process_copy(t_process *process)
 **	Tries to set the specified registry value.
 */
 
-void	process_set_reg(t_process *process, char reg_id, t_reg val)
+void		process_set_reg(t_process *process, char reg_id, t_reg val)
 {
 	if (is_valid_reg(reg_id))
 		process->reg[reg_id - 1] = val;
@@ -44,7 +44,7 @@ void	process_set_reg(t_process *process, char reg_id, t_reg val)
 **	returns 0.
 */
 
-t_reg	process_get_reg(t_process *process, char reg_id)
+t_reg		process_get_reg(t_process *process, char reg_id)
 {
 	if (!is_valid_reg(reg_id))
 		return (0);
