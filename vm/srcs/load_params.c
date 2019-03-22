@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 15:56:51 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 15:38:20 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 17:54:55 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_bool	load_param(t_param *param, size_t *pos, void *ptr)
 	}
 	else if (param->type == DIR_CODE)
 	{
-		param->value.dir = *((t_dir*)ptr + (*pos));
+		ft_memcpy(&param->value.ind, ptr + (*pos), sizeof(t_dir));
 		param->value.dir = convert_endian32(param->value.dir);
 		(*pos) += sizeof(t_dir);
 	}
