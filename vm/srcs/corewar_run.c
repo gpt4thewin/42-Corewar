@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 15:48:23 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 16:39:37 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ static void			check_alive(t_corewar *corewar)
 	}
 	if (total_nbr_live > MAX_CHECKS)
 	{
-		corewar->cycle_to_die -= CYCLE_DELTA;
+		if (corewar->cycle_to_die <= CYCLE_DELTA)
+			corewar->cycle_to_die = 0;
+		else
+			corewar->cycle_to_die -= CYCLE_DELTA;
 	}
 }
 
