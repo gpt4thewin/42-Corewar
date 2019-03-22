@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 16:31:45 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 18:34:09 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void		write_memory(t_corewar *cw, t_memaccess *memaccess)
 	}
 }
 
-int		generic_read(t_corewar *corewar, t_memaccess *memaccess,
+int				generic_read(t_corewar *corewar, t_memaccess *memaccess,
 	t_param param)
 {
 	int	reg_id;
@@ -101,7 +101,7 @@ int		generic_read(t_corewar *corewar, t_memaccess *memaccess,
 	return (res);
 }
 
-void	generic_write(t_corewar *corewar, t_memaccess *memaccess, t_param param,
+void			generic_write(t_corewar *corewar, t_memaccess *memaccess, t_param param,
 	int val)
 {
 	int			reg_id;
