@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 16:32:49 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/21 19:05:44 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,35 @@ static t_op			*get_op(int opcode)
 		return (NULL);
 	res = &g_op_tab[opcode - 1];
 	return (res);
+}
+
+static void			check_alive(t_corewar *corewar)
+{
+	int			total_nbr_live;
+	t_list		**curr;
+	t_process	*process;
+
+	total_nbr_live = 0;
+	curr = &corewar->processes;
+	while (*curr != NULL)
+	{
+		process = (t_process*)(*curr)->content;
+		if (process->nbr_live <= 0)
+		{
+			ft_lstdelone(curr, NULL);
+			corewar->process_count--;
+		}
+		else
+		{
+			total_nbr_live += process->nbr_live;
+			process->nbr_live = 0;
+			curr = &(*curr)->next;
+		}
+	}
+	if (total_nbr_live > MAX_CHECKS)
+	{
+		corewar->cycle_to_die -= CYCLE_DELTA;
+	}
 }
 
 /*
@@ -85,10 +114,7 @@ static void	run_cycle(t_corewar *corewar)
 
 t_player	*corewar_run(t_corewar *corewar)
 {
-	t_player	*winner;
-
-	winner = NULL;
-	while (winner == NULL)
+	while (corewar->process_count > 0)
 	{
 		if (corewar->dump_nbr_cycle >= 0
 			&& corewar->curr_cycle >= corewar->dump_nbr_cycle)
@@ -98,6 +124,11 @@ t_player	*corewar_run(t_corewar *corewar)
 		}
 		run_cycle(corewar);
 		corewar->curr_cycle++;
+		if (corewar->curr_cycle == corewar->next_check_cycle)
+		{
+			check_alive(corewar);
+			corewar->next_check_cycle += corewar->cycle_to_die;
+		}
 	}
-	return (winner);
+	return (corewar->last_live);
 }

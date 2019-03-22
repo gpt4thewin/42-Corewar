@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:36:26 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 19:53:24 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/22 14:24:57 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	inst_and(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	int			val1;
 	int			val2;
 	int			res;
-	t_param		sum_param;
+
 
 	memaccess.idxmod = true;
 	memaccess.process = process;
@@ -105,8 +105,8 @@ void	inst_or(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	int			val1;
 	int			val2;
 	int			res;
-	t_param		sum_param;
 
+	param->
 	memaccess.idxmod = true;
 	memaccess.process = process;
 	memaccess.value_size = DIR_SIZE;
@@ -126,7 +126,6 @@ void	inst_xor(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	int			val1;
 	int			val2;
 	int			res;
-	t_param		sum_param;
 
 	memaccess.idxmod = true;
 	memaccess.process = process;

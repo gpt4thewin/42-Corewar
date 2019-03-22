@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 16:24:47 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/21 19:03:01 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/21 19:21:57 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void debug_process(t_process *p)
 	while (i < REG_NUMBER)
 	{
 		ft_fprintf(2,"reg[%d] = %2.2hhx \n",i, p->reg[i]);
-		if (i == (REG_NUMBER / 2))
+		if (i == ((REG_NUMBER -1)/ 2))
 			ft_fprintf(2,"\n");
 		i++;
 	}
