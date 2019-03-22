@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 17:48:57 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 16:31:45 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ int				get_physical_addr(int addr)
 static int		get_virtual_addr(t_memaccess *memaccess)
 {
 	int		addr;
+	int		offset;
 
-	addr = (memaccess->process->pc + memaccess->_param.value.ind);
+	offset = memaccess->_param.value.ind;
 	if (memaccess->idxmod)
-		addr %= IDX_MOD;
+		offset %= IDX_MOD;
+	addr = (memaccess->process->pc + offset);
 	return (addr);
 }
 
@@ -90,7 +92,7 @@ int		generic_read(t_corewar *corewar, t_memaccess *memaccess,
 	else if (param.type == IND_CODE)
 	{
 		read_memory(corewar, memaccess);
-		res = memaccess->_value;
+		res = convert_endian32(memaccess->_value);
 	}
 	else
 	{
@@ -112,7 +114,7 @@ void	generic_write(t_corewar *corewar, t_memaccess *memaccess, t_param param,
 	}
 	else if (param.type == IND_CODE)
 	{
-		memaccess->_value = val;
+		memaccess->_value = convert_endian32(val);
 		write_memory(corewar, memaccess);
 	}
 	else

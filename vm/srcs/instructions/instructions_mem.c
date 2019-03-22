@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:37:53 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 18:11:30 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 15:03:10 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	inst_ld(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	memaccess.value_size = REG_SIZE;
 	val = generic_read(corewar, &memaccess, param->params[0]);
 	process->reg[(int)param->params[1].value.reg_id - 1] = val;
-	process->carry = (memaccess._value == 0);
+	process->carry = (val == 0);
 }
 
 void	inst_st(t_corewar *corewar, t_process *process, t_paraminfo *param)

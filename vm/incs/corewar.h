@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/21 19:11:51 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/22 16:53:54 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ struct						s_process
 	int			pc;
 	t_reg		reg[REG_NUMBER];
 	t_bool		carry;
+	t_bool		is_jump;
 	int			nbr_live;
 };
 
@@ -155,6 +156,7 @@ struct						s_corewar
 	t_player	players[MAX_PLAYERS];
 	t_player	*last_live;
 	int			cycle_to_die;
+	int			checks_count;
 	int			total_nbr_live;
 	int			process_count;
 	t_list		*processes;

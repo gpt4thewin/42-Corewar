@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:36:26 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 14:24:57 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/22 17:28:19 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	inst_add(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	int			val2;
 	int 		res;
 
-(void)corewar;
+	(void)corewar;
 	reg_id = param->params[0].value.reg_id;
 	val1 = process_get_reg(process, reg_id);
 	reg_id = param->params[1].value.reg_id;
@@ -65,11 +65,11 @@ void	inst_sub(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	int			val2;
 	int 		res;
 
+	debug_process(process);
 	reg_id = param->params[0].value.reg_id;
 	val1 = process_get_reg(process, reg_id);
 	reg_id = param->params[1].value.reg_id;
 	val2 = process_get_reg(process, reg_id);
-	debug_process(process);
 	res = val1 - val2;
 	reg_id = param->params[2].value.reg_id;
 	process_set_reg(process, reg_id, res);
@@ -81,61 +81,61 @@ void	inst_sub(t_corewar *corewar, t_process *process, t_paraminfo *param)
 void	inst_and(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
-	int			val1;
-	int			val2;
-	int			res;
+	t_param		sum_param;
+	int			reg_id;
 
-
+	debug_process(process);
 	memaccess.idxmod = true;
 	memaccess.process = process;
 	memaccess.value_size = DIR_SIZE;
-	val1 = generic_read(corewar, &memaccess, param->params[0]);
-	val2 = generic_read(corewar, &memaccess, param->params[1]);
-	res = val1 & val2;
+	sum_param.value.ind = generic_read(corewar, &memaccess, param->params[0]);
+	sum_param.value.ind &= generic_read(corewar, &memaccess, param->params[1]);
 	sum_param.type = IND_CODE;
-	memaccess.value_size = REG_SIZE;
-	process_set_reg(process, param->params[2].value.reg_id, res);
-	process->carry = (res == 0);
+	ft_fprintf(2," res = %d \n" , (generic_read(corewar, &memaccess, param->params[0]) & generic_read(corewar, &memaccess, param->params[1])));
+	ft_fprintf(2," res  &= %d \n", sum_param.value.ind);
+	reg_id = param->params[2].value.reg_id;
+	process_set_reg(process, reg_id,  sum_param.value.ind);
+	process->carry = (sum_param.value.ind == 0);
 	debug_process(process);
 }
 
 void	inst_or(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
-	int			val1;
-	int			val2;
-	int			res;
+	t_param		sum_param;
+	int			reg_id;
 
-	param->
+	debug_process(process);
 	memaccess.idxmod = true;
 	memaccess.process = process;
 	memaccess.value_size = DIR_SIZE;
-	val1 = generic_read(corewar, &memaccess, param->params[0]);
-	val2 = generic_read(corewar, &memaccess, param->params[1]);
-	res = val1 | val2;
+	sum_param.value.ind = generic_read(corewar, &memaccess, param->params[0]);
+	sum_param.value.ind |= generic_read(corewar, &memaccess, param->params[1]);
 	sum_param.type = IND_CODE;
-	memaccess.value_size = REG_SIZE;
-	process_set_reg(process, param->params[2].value.reg_id, res);
-	process->carry = (res == 0);
+	reg_id = param->params[2].value.reg_id;
+	process_set_reg(process, reg_id,  sum_param.value.ind);
+	process->carry = (sum_param.value.ind == 0);
 	debug_process(process);
+
 }
 
 void	inst_xor(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
 	t_memaccess	memaccess;
-	int			val1;
-	int			val2;
-	int			res;
+	t_param		sum_param;
+	int			reg_id;
 
+	debug_process(process);
 	memaccess.idxmod = true;
 	memaccess.process = process;
 	memaccess.value_size = DIR_SIZE;
-	val1 = generic_read(corewar, &memaccess, param->params[0]);
-	val2 = generic_read(corewar, &memaccess, param->params[1]);
-	res = val1 ^ val2;
+	sum_param.value.ind = generic_read(corewar, &memaccess, param->params[0]);
+	sum_param.value.ind ^= generic_read(corewar, &memaccess, param->params[1]);
 	sum_param.type = IND_CODE;
-	memaccess.value_size = REG_SIZE;
-	process_set_reg(process, param->params[2].value.reg_id, res);
-	process->carry = (res == 0);
+	ft_fprintf(2," res = %d \n" , (generic_read(corewar, &memaccess, param->params[0]) ^ generic_read(corewar, &memaccess, param->params[1])));
+	ft_fprintf(2," res  ^= %d \n", sum_param.value.ind);
+	reg_id = param->params[2].value.reg_id;
+	process_set_reg(process, reg_id,  sum_param.value.ind);
+	process->carry = (sum_param.value.ind == 0);
 	debug_process(process);
 }
