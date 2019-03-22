@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar_run.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 17:22:48 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 19:26:06 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,57 +35,6 @@ static t_op			*get_op(int opcode)
 		return (NULL);
 	res = &g_op_tab[opcode - 1];
 	return (res);
-}
-
-static int			kill_dead_process(t_corewar *corewar)
-{
-	t_process	*process;
-	int			total_nbr_live;
-	t_list		**curr;
-
-	total_nbr_live = 0;
-	curr = &corewar->processes;
-	while (*curr != NULL)
-	{
-		process = (t_process*)(*curr)->content;
-		if (process->nbr_live <= 0)
-		{
-			ft_lstdelone(curr, NULL);
-			corewar->process_count--;
-		}
-		else
-		{
-			total_nbr_live += process->nbr_live;
-			process->nbr_live = 0;
-			curr = &(*curr)->next;
-		}
-	}
-	return (total_nbr_live);
-}
-
-static void			check_alive(t_corewar *corewar)
-{
-	t_bool		force_check;
-	int			total_nbr_live;
-
-	total_nbr_live = kill_dead_process(corewar);
-	if (corewar->checks_count >= MAX_CHECKS)
-	{
-		corewar->checks_count = 0;
-		force_check = true;
-	}
-	else
-	{
-		force_check = false;
-	}
-	if (force_check || total_nbr_live > NBR_LIVE)
-	{
-		if (corewar->cycle_to_die <= CYCLE_DELTA)
-			corewar->cycle_to_die = 0;
-		else
-			corewar->cycle_to_die -= CYCLE_DELTA;
-	}
-	corewar->checks_count++;
 }
 
 /*
@@ -121,7 +70,7 @@ static void			run_process_cycle(t_corewar *corewar, t_process *process)
 	process->next_cycle += op->cycles;
 }
 
-static void	run_cycle(t_corewar *corewar)
+static void			run_cycle(t_corewar *corewar)
 {
 	t_list		**curr;
 	t_process	*process;
@@ -136,7 +85,7 @@ static void	run_cycle(t_corewar *corewar)
 	}
 }
 
-t_player	*corewar_run(t_corewar *corewar)
+t_player			*corewar_run(t_corewar *corewar)
 {
 	while (corewar->process_count > 0)
 	{
