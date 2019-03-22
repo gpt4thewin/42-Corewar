@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 16:39:37 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 17:22:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static t_op			*get_op(int opcode)
 	return (res);
 }
 
-static void			check_alive(t_corewar *corewar)
+static int			kill_dead_process(t_corewar *corewar)
 {
+	t_process	*process;
 	int			total_nbr_live;
 	t_list		**curr;
-	t_process	*process;
 
 	total_nbr_live = 0;
 	curr = &corewar->processes;
@@ -60,13 +60,32 @@ static void			check_alive(t_corewar *corewar)
 			curr = &(*curr)->next;
 		}
 	}
-	if (total_nbr_live > MAX_CHECKS)
+	return (total_nbr_live);
+}
+
+static void			check_alive(t_corewar *corewar)
+{
+	t_bool		force_check;
+	int			total_nbr_live;
+
+	total_nbr_live = kill_dead_process(corewar);
+	if (corewar->checks_count >= MAX_CHECKS)
+	{
+		corewar->checks_count = 0;
+		force_check = true;
+	}
+	else
+	{
+		force_check = false;
+	}
+	if (force_check || total_nbr_live > NBR_LIVE)
 	{
 		if (corewar->cycle_to_die <= CYCLE_DELTA)
 			corewar->cycle_to_die = 0;
 		else
 			corewar->cycle_to_die -= CYCLE_DELTA;
 	}
+	corewar->checks_count++;
 }
 
 /*
@@ -129,7 +148,7 @@ t_player	*corewar_run(t_corewar *corewar)
 		}
 		run_cycle(corewar);
 		corewar->curr_cycle++;
-		if (corewar->curr_cycle == corewar->next_check_cycle)
+		if (corewar->curr_cycle >= corewar->next_check_cycle)
 		{
 			check_alive(corewar);
 			corewar->next_check_cycle += corewar->cycle_to_die;
