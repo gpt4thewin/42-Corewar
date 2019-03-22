@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/20 16:51:18 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/22 18:55:21 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,45 +75,6 @@ static void		players_init_color(t_corewar *corewar)
 	while (cpt < corewar->players_count && cpt < MAX_PLAYERS)
 	{
 		corewar->players[cpt].color = cpt % MAX_PLAYERS;
-		cpt++;
-	}
-}
-
-static int		id_has_duplicate(t_corewar *corewar, int id)
-{
-	int cpt;
-	int nb;
-
-	nb = 0;
-	cpt = corewar->players_count - 1;
-	while (cpt >= 0)
-	{
-		if (corewar->players[cpt].id == id)
-			nb++;
-		cpt--;
-	}
-	return (nb);
-}
-
-static void		players_init_id(t_corewar *corewar)
-{
-	int cpt;
-	int i;
-
-	cpt = 0;
-	while (cpt < corewar->players_count)
-	{
-		i = 0;
-		while (corewar->players[cpt].id == -1 && i < corewar->players_count)
-		{
-			if (corewar->players[cpt].id == -1
-				&& id_has_duplicate(corewar, i) == 0)
-				corewar->players[cpt].id = i;
-					i++;
-		}
-		//ft_printf("player %d id : %d\n",cpt, corewar->players[cpt].id );
-		if (id_has_duplicate(corewar, corewar->players[cpt].id) > 1)
-			corewar_die("Error player : duplicate id");
 		cpt++;
 	}
 }

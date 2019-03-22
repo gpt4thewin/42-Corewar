@@ -6,7 +6,7 @@
 #    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/22 18:30:01 by agoulas          ###   ########.fr        #
+#    Updated: 2019/03/22 18:54:25 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SOURCES		+=	main.c \
 				instructions/instructions_mem_long.c \
 				load_params.c \
 				parse_parameters.c \
+				parse_parameters_id.c \
 				setup_players.c \
 				process.c \
 				player.c \
