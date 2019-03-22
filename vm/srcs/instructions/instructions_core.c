@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 16:34:10 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 17:28:22 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,33 @@ void	inst_zjmp(t_corewar *corewar, t_process *process, t_paraminfo *param)
 
 void	inst_fork(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)param;
-	(void)corewar;
-	(void)process;
+	int			offset;
+	t_process	*new_process;
+
+	new_process = process_copy(process);
+	offset = param->params[0].value.dir;
+	offset = offset % IDX_MOD;
+	new_process->pc += offset;
+	corewar_add_process(corewar, new_process);
 }
 
 void	inst_lfork(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)param;
-	(void)corewar;
-	(void)process;
+	int			offset;
+	t_process	*new_process;
+
+	new_process = process_copy(process);
+	offset = param->params[0].value.dir;
+	new_process->pc += offset;
+	corewar_add_process(corewar, new_process);
 }
 
 void	inst_aff(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-	(void)param;
+	int		val;
+
 	(void)corewar;
-	(void)process;
+	val = process->reg[(int)param->params[0].value.reg_id - 1];
+	val = val % 256;
+	ft_printf("Aff: %c\n", val);
 }
