@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:44:00 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 18:29:12 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/22 19:09:49 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		dump(t_corewar *corewar)
 	while (i < MEM_SIZE)
 	{
 		print_hex_color(corewar, i);
-		if (((i + 1) % 64 != 0))
+		if (((i + 1) % MAX_SIZE_DUMP != 0))
 			ft_printf(" ");
 		else
 		{

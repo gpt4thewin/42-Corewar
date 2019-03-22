@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/22 16:53:54 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 19:09:43 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,8 @@ struct						s_instruction
 	union u_inst_param	param;
 }__attribute__((packed, aligned(1)));
 
+# define MAX_SIZE_DUMP 32
+
 /*
 **	Corewar.
 */
@@ -245,7 +247,7 @@ void			setup_players(t_corewar *corewar);
 /*
 **	Command line parser.
 */
-
+void			players_init_id(t_corewar *corewar);
 void			parse_parameters(t_corewar *corewar, int ac, const char *av[]);
 
 /*
