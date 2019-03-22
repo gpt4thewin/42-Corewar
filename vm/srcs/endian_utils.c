@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   endian_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:04:45 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/13 14:17:35 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 18:36:05 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	swap(char *a, char *b)
 **	Converts little endian to big endian (or the other way around).
 */
 
-int		to_little_endian32(int val)
+int			to_little_endian32(int val)
 {
 	int		res;
 	char	*array;
