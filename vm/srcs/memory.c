@@ -92,7 +92,7 @@ int		generic_read(t_corewar *corewar, t_memaccess *memaccess,
 	else if (param.type == IND_CODE)
 	{
 		read_memory(corewar, memaccess);
-		res = memaccess->_value;
+		res = convert_endian32(memaccess->_value);
 	}
 	else
 	{
@@ -114,7 +114,7 @@ void	generic_write(t_corewar *corewar, t_memaccess *memaccess, t_param param,
 	}
 	else if (param.type == IND_CODE)
 	{
-		memaccess->_value = val;
+		memaccess->_value = convert_endian32(val);
 		write_memory(corewar, memaccess);
 	}
 	else
