@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
+#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/20 15:59:14 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/22 18:30:01 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SOURCES		+=	main.c \
 				arg_utils.c \
 				instructions/instructions_core.c \
 				instructions/instructions_math.c \
+				instructions/instructions_math_basic.c \
 				instructions/instructions_mem.c \
 				instructions/instructions_mem_long.c \
 				load_params.c \
