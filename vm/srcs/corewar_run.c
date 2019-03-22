@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 19:05:44 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 15:48:23 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,23 @@ static void			run_process_cycle(t_corewar *corewar, t_process *process)
 
 	inst = ((t_instruction*)&corewar->memory[get_physical_addr(process->pc)]);
 	op = get_op(inst->opcode);
-	if (op == NULL
-		|| !load_params(op, inst, &paraminfo))
+	if (op == NULL || !load_params(op, inst, &paraminfo))
 	{
-		// TODO: Verifier le saut des instructions pour les mauvais types de parametres.
 		process->pc++;
 		process->next_cycle++;
 		return ;
 	}
-	// TODO verify arguments type.
 	func = g_op_func_tab[(int)op->opcode];
 	func(corewar, process, &paraminfo);
-	process->pc++;
-	if (op->has_argcode)
+	if (!process->is_jump)
+	{
 		process->pc++;
-	process->pc += get_params_size(&paraminfo);
+		if (op->has_argcode)
+			process->pc++;
+		process->pc += get_params_size(&paraminfo);
+	}
+	else
+		process->is_jump = false;
 	process->next_cycle += op->cycles;
 }
 
