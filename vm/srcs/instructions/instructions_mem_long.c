@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_mem_long.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:38:41 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 18:22:30 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/22 18:32:56 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	inst_lld(t_corewar *corewar, t_process *process, t_paraminfo *param)
 {
-		t_memaccess	memaccess;
-		int			val;
+	t_memaccess	memaccess;
+	int			val;
 
-		memaccess.idxmod = false;
-		memaccess.process = process;
-		memaccess.value_size = REG_SIZE;
-		val = generic_read(corewar, &memaccess, param->params[0]);
-		process->reg[(int)param->params[1].value.reg_id - 1] = val;
-		process->carry = (memaccess._value == 0);
+	memaccess.idxmod = false;
+	memaccess.process = process;
+	memaccess.value_size = REG_SIZE;
+	val = generic_read(corewar, &memaccess, param->params[0]);
+	process->reg[(int)param->params[1].value.reg_id - 1] = val;
+	process->carry = (memaccess._value == 0);
 }
 
 void	inst_lldi(t_corewar *corewar, t_process *process, t_paraminfo *param)
