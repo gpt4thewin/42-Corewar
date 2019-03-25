@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 18:34:09 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/25 13:41:38 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,16 @@ static void		write_memory(t_corewar *cw, t_memaccess *memaccess)
 	int		i;
 	int		addr;
 	char	tmp;
+	int		color;
 
+	color = memaccess->process->player->color;
 	addr = get_virtual_addr(memaccess);
 	i = 0;
 	while (i < (int)memaccess->value_size)
 	{
 		tmp = *((char*)&memaccess->_value + i);
 		*((char*)&cw->memory[get_physical_addr(addr)]) = tmp;
+		cw->map_memory_color[get_physical_addr(addr)] = color;
 		addr++;
 		i++;
 	}
