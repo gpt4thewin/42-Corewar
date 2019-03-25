@@ -6,7 +6,7 @@
 #    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/22 19:25:53 by agoulas          ###   ########.fr        #
+#    Updated: 2019/03/25 13:33:27 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SOURCES		+=	main.c \
 				corewar.c \
 				corewar_run.c \
 				corewar_dead_or_live.c \
+				map_memory_color.c \
 				memory.c \
 				arg_utils.c \
 				instructions/instructions_core.c \

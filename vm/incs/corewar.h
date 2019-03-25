@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/22 19:26:42 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/25 13:34:51 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,12 @@ void			param_at(t_instruction *inst, int pos, t_arg_type type, void *res);
 */
 
 t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo);
+
+/*
+**	LOad color on the map_memory_color.
+*/
+
+void	*memcpy_color(t_corewar *corewar, t_player *player, size_t num, size_t pos);
 
 /*
 **	Instructions processing.
