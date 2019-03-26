@@ -2,5 +2,12 @@ fonction a ajouter:
 	- ajout variable couleur dans dump et player;
 	-ajouter couleur printf au dump.
 
+VERIFIER:
+	zone colorer a l installation des player.
+	creer une fonction qui gerera copy de la mem et changement des couleur sur map_memory_color.
+	dump MAX_SIZE_DUMP ?
+	-option affichage utilisant dump.
+
+
 
 leak,norme,fonction inutile , pdf de corewar avant le rendu

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/22 19:07:07 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/26 16:27:23 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,10 +211,14 @@ struct						s_instruction
 	union u_inst_param	param;
 }__attribute__((packed, aligned(1)));
 
+# define MAX_SIZE_DUMP 32
+
 /*
 **	Corewar.
 */
 
+int				kill_dead_process(t_corewar *corewar);
+void			check_alive(t_corewar *corewar);
 t_corewar		*corewar_new(void);
 t_player		*corewar_run(t_corewar *corewar);
 void			corewar_die(char *msg);
@@ -247,7 +251,7 @@ void			setup_players(t_corewar *corewar);
 /*
 **	Command line parser.
 */
-
+void			players_init_id(t_corewar *corewar);
 void			parse_parameters(t_corewar *corewar, int ac, const char *av[]);
 
 /*
@@ -284,6 +288,12 @@ void			param_at(t_instruction *inst, int pos, t_arg_type type, void *res);
 */
 
 t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo);
+
+/*
+**	LOad color on the map_memory_color.
+*/
+
+void	*memcpy_color(t_corewar *corewar, t_player *player, size_t num, size_t pos);
 
 /*
 **	Instructions processing.

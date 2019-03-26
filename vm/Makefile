@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
+#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/20 15:59:14 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/25 13:33:27 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,18 @@ NAME		= corewar
 SOURCES		+=	main.c \
 				corewar.c \
 				corewar_run.c \
+				corewar_dead_or_live.c \
+				map_memory_color.c \
 				memory.c \
 				arg_utils.c \
 				instructions/instructions_core.c \
 				instructions/instructions_math.c \
+				instructions/instructions_math_basic.c \
 				instructions/instructions_mem.c \
 				instructions/instructions_mem_long.c \
 				load_params.c \
 				parse_parameters.c \
+				parse_parameters_id.c \
 				setup_players.c \
 				process.c \
 				player.c \
