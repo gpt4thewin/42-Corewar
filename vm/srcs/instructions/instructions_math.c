@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 18:25:54 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/26 17:04:01 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/26 19:01:30 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	inst_add_sub(t_process *process, t_paraminfo *param, int type)
 	else if (type == 0)
 		res = (val1 - val2);
 	else
-		corewar_die("instruction add_sub inconnu");
+		corewar_die("instruction inconnue");
 	reg_id = param->params[2].value.reg_id;
 	process_set_reg(process, reg_id, res);
 	process->carry = (res == 0);
