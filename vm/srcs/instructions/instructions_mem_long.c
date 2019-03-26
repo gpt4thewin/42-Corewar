@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_mem_long.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:38:41 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 18:32:56 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/26 17:09:01 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	inst_lld(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	memaccess.process = process;
 	memaccess.value_size = REG_SIZE;
 	val = generic_read(corewar, &memaccess, param->params[0]);
-	process->reg[(int)param->params[1].value.reg_id - 1] = val;
+	process_set_reg(process, param->params[1].value.reg_id, val);
 	process->carry = (memaccess._value == 0);
 }
 

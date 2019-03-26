@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/25 13:41:38 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/26 17:12:32 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				generic_read(t_corewar *corewar, t_memaccess *memaccess,
 	if (param.type == REG_CODE)
 	{
 		reg_id = param.value.reg_id;
-		res = (int)memaccess->process->reg[reg_id - 1];
+		res = process_get_reg(memaccess->process, reg_id);
 	}
 	else if (param.type == DIR_CODE)
 	{
@@ -113,7 +113,7 @@ void			generic_write(t_corewar *corewar, t_memaccess *memaccess, t_param param,
 	if (param.type == REG_CODE)
 	{
 		reg_id = param.value.reg_id;
-		memaccess->process->reg[reg_id - 1] = (t_reg)val;
+		process_set_reg(memaccess->process, reg_id, val);
 	}
 	else if (param.type == IND_CODE)
 	{
