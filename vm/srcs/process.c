@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 15:12:12 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/21 18:37:22 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/26 16:01:07 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_process	*process_new(void)
 	t_process	*res;
 
 	res = ft_memalloc(sizeof(t_process));
+	res->exec_cycle = -1;
 	return (res);
 }
 

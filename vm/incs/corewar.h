@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/22 16:53:54 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/22 19:07:07 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,10 +136,12 @@ struct						s_player
 struct						s_process
 {
 	t_player	*player;
-	int			next_cycle;
+	int			exec_cycle;
 	int			pc;
 	t_reg		reg[REG_NUMBER];
 	t_bool		carry;
+	t_op		*op;
+	t_paraminfo	paraminfo;
 	t_bool		is_jump;
 	int			nbr_live;
 };

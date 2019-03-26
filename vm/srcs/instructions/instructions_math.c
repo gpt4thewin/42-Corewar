@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_math.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:36:26 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 17:28:19 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/26 16:00:04 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void debug_process(t_process *p)
 	i = 0;
 	ft_fprintf(2,"\n___________________________________________________\n");
 	debug_player(*p->player);
-	ft_fprintf(2, "pc = %d, next_cycle :%d,nbr_live = %d \n",p->pc, p->next_cycle,p->nbr_live);
+	ft_fprintf(2, "pc = %d, exec_cycle :%d,nbr_live = %d \n",p->pc, p->exec_cycle, p->nbr_live);
 	while (i < REG_NUMBER)
 	{
 		ft_fprintf(2,"reg[%d] = %d \n",i, p->reg[i]);
