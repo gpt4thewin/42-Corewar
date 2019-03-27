@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 18:43:40 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/22 19:20:52 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/27 13:27:35 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void		player_has_id(t_corewar *corewar, int cpt)
 {
 	int	i;
 
-	i = 0;
-	while (corewar->players[cpt].id == -1 && i < corewar->players_count)
+	i = 1;
+	while (corewar->players[cpt].id == -1 && i <= corewar->players_count)
 	{
 		if (corewar->players[cpt].id == -1
 			&& !id_has_duplicate(corewar, i))

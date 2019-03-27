@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/26 19:00:35 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/27 13:28:15 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,11 @@ struct							s_paraminfo
 
 enum 							e_color
 {
+	WHITE,
 	BLUE,
 	GREEN,
 	RED,
-	YELLOW,
-	WHITE
+	YELLOW
 };
 
 /*
@@ -163,6 +163,7 @@ struct						s_corewar
 	int			process_count;
 	t_list		*processes;
 	int			dump_nbr_cycle;
+	t_bool		dump_cycle;
 	t_color		map_memory_color[MEM_SIZE];
 	char		memory[MEM_SIZE];
 };
