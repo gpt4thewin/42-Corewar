@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/26 19:01:07 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/27 16:46:36 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	inst_aff(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	int		val;
 
 	(void)corewar;
-	val = process->reg[(int)param->params[0].value.reg_id - 1];
-	val = val % 256;
+	val = process_get_reg(process, param->params[0].value.reg_id);
+	val = val % UINT8_MAX;
 	ft_printf("Aff: %c\n", val);
 }
