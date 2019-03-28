@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/28 13:01:09 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 13:17:19 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 
 # define DUMP_WIDTH 64
 # define MSG_COMMAND_LINE_ERROR "Error: invalid command line."
+# define VERBOSE_DEATH 1
+# define VERBOSE_LIVE 2
+# define VERBOSE_INST 3
 
 typedef struct s_player			t_player;
 typedef struct s_process		t_process;
@@ -165,6 +168,7 @@ struct						s_corewar
 	t_list		*processes;
 	int			dump_nbr_cycle;
 	t_bool		dump_cycle;
+	int			verbosity;
 	t_color		map_memory_color[MEM_SIZE];
 	char		memory[MEM_SIZE];
 };

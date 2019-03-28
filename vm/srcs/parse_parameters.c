@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/28 12:28:24 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 13:16:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 	corewar->players_count++;
 }
 
-static void		parse_dump_cycle(t_corewar *corewar, int *pos, const char *av[])
+static void		parse_option(t_corewar *corewar, int *pos, const char *av[])
 {
 	if (ft_strequ("-dump_cycle", av[*pos]))
 	{
@@ -66,15 +66,22 @@ static void		parse_dump_cycle(t_corewar *corewar, int *pos, const char *av[])
 		corewar->dump_cycle = true;
 		corewar->dump_nbr_cycle = parse_number(pos, av);
 	}
-}
-
-static void		parse_dump(t_corewar *corewar, int *pos, const char *av[])
-{
-	if (ft_strequ("-dump", av[*pos]))
+	else if (ft_strequ("-dump", av[*pos]))
 	{
 		(*pos)++;
 		corewar->dump_nbr_cycle = parse_number(pos, av);
 	}
+	else if (ft_strequ("-v", av[*pos]))
+	{
+		(*pos)++;
+		corewar->verbosity = parse_number(pos, av);
+	}
+	else
+	{
+		ft_fprintf(2, "Unknown option : %s\n", av[*pos]);
+		corewar_die("");
+	}
+	(*pos)++;
 }
 
 static void		players_init_color(t_corewar *corewar)
@@ -93,12 +100,14 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 {
 	int	i;
 
-	i = 1;
-	parse_dump_cycle(corewar, &i, av);
-	parse_dump(corewar, &i, av);
 	if (ac == 1)
 	{
 		corewar_die("ERROR: no argument");
+	}
+	i = 1;
+	while (av[i] != NULL && av[i][0] == '-')
+	{
+		parse_option(corewar, &i, av);
 	}
 	while (i < ac)
 	{
