@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/27 13:29:13 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:28:24 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	{
 		parse_champion(corewar, &i, av);
 	}
+	if (corewar->players_count <= 0)
+		corewar_die("ERROR: no champions specified");
 	players_init_color(corewar);
 	players_init_id(corewar);
 }
