@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:22:34 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/28 15:15:13 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/28 17:50:57 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ static void	read_n_bytes(int fd, void *ptr, ssize_t size, const char *filename)
 	}
 }
 
+static void	player_cpy(t_player *player, t_header header, int fd)
+{
+	read_n_bytes(fd, &player->program, header.prog_size, player->file);
+	ft_memcpy(&player->prog_name, &header.prog_name, sizeof(player->prog_name));
+	ft_memcpy(&player->comment, &header.comment, sizeof(header.comment));
+	player->header_prog_size = header.prog_size;
+	if (player->prog_name[0] == '\0')
+		ft_memcpy(player->prog_name,"ANONYMOUS", 8);
+	if (player->comment[0] == '\0')
+		ft_memcpy(player->comment,"NO COMMENTS", 8);
+}
+
 void		player_load(t_player *player)
 {
 	int			fd;
@@ -55,9 +67,6 @@ void		player_load(t_player *player)
 		ft_fprintf(2, "%s is too big\n", player->file);
 		exit(EXIT_FAILURE);
 	}
-	read_n_bytes(fd, &player->program, header.prog_size, player->file);
+	player_cpy(player, header, fd);
 	close(fd);
-	ft_memcpy(&player->prog_name, &header.prog_name, sizeof(player->prog_name));
-	ft_memcpy(&player->comment, &header.comment, sizeof(header.comment));
-	player->header_prog_size = header.prog_size;
 }
