@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/27 13:28:15 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/28 15:15:30 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ struct						s_player
 	t_color		color;
 	int			last_check;
 	const char	*file;
+	char		comment[COMMENT_LENGTH + 1];
+	int			header_prog_size;
 	char		prog_name[PROG_NAME_LENGTH + 1];
 	char		program[CHAMP_MAX_SIZE];
 };
@@ -319,4 +321,10 @@ void			inst_lldi(t_corewar *corewar, t_process *process, t_paraminfo*);
 void			inst_lfork(t_corewar *corewar, t_process *process, t_paraminfo*);
 void			inst_aff(t_corewar *corewar, t_process *process, t_paraminfo*);
 
+
+/*
+**
+*/
+
+void			print_start_fight(t_corewar *corewar);
 #endif

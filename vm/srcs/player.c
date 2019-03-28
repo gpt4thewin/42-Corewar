@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:22:34 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 13:46:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 15:15:13 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,6 @@ void		player_load(t_player *player)
 	read_n_bytes(fd, &player->program, header.prog_size, player->file);
 	close(fd);
 	ft_memcpy(&player->prog_name, &header.prog_name, sizeof(player->prog_name));
+	ft_memcpy(&player->comment, &header.comment, sizeof(header.comment));
+	player->header_prog_size = header.prog_size;
 }
