@@ -6,11 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:22:34 by juazouz           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/03/28 17:50:57 by agoulas          ###   ########.fr       */
-=======
-/*   Updated: 2019/03/28 15:49:13 by juazouz          ###   ########.fr       */
->>>>>>> 5b89b8946c39486fcfb433de9889ce12dffa57e5
+/*   Updated: 2019/03/28 19:36:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +39,7 @@ static void	player_cpy(t_player *player, t_header header, int fd)
 	read_n_bytes(fd, &player->program, header.prog_size, player->file);
 	ft_memcpy(&player->prog_name, &header.prog_name, sizeof(player->prog_name));
 	ft_memcpy(&player->comment, &header.comment, sizeof(header.comment));
-	player->header_prog_size = header.prog_size;
+	player->prog_size = header.prog_size;
 	if (player->prog_name[0] == '\0')
 		ft_memcpy(player->prog_name,"ANONYMOUS", 8);
 	if (player->comment[0] == '\0')
