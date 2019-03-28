@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:22:34 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/28 12:15:21 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:38:00 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void		player_load(t_player *player)
 		exit(EXIT_FAILURE);
 	}
 	read_n_bytes(fd, &header, sizeof(header), player->file);
-	header.magic = to_little_endian32(header.magic);
-	header.prog_size = to_little_endian32(header.prog_size);
+	header.magic = convert_endian32(header.magic);
+	header.prog_size = convert_endian32(header.prog_size);
 	if (header.magic != COREWAR_EXEC_MAGIC)
 		read_error(player->file);
 	if (header.prog_size > CHAMP_MAX_SIZE)
