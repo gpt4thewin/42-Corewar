@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/28 15:52:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:12:00 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ struct						s_player
 
 struct						s_process
 {
+	int			id;
 	t_player	*player;
 	int			exec_cycle;
 	int			pc;
