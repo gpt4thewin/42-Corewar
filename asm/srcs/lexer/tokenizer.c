@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/04 23:14:03 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/09 03:12:54 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:44:19 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void	tokenize(t_token new, t_token **last)
 {
 	(*last)->type = new.type;
 	if (!((*last)->value = ft_strdup(new.value)))
-		ft_exit_error("error: can't malloc");
-	if (!((*last)->next = malloc(sizeof(t_token))))
-		ft_exit_error("error: can't malloc");
+		ft_exit_error("error: can't ft_memalloc");
+	if (!((*last)->next = ft_memalloc(sizeof(t_token))))
+		ft_exit_error("error: can't ft_memalloc");
 	(*last) = (*last)->next;
 	(*last)->type = END;
 	(*last)->value = NULL;

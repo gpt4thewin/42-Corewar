@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 00:35:49 by juazouz           #+#    #+#             */
-/*   Updated: 2018/11/13 15:29:42 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:43:33 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	if (s == NULL)
 		return (NULL);
 	len = ft_strlen((char*)s);
-	result = malloc(len + 1);
+	result = ft_memalloc(len + 1);
 	if (result == NULL)
 		return (NULL);
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 15:14:52 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/08 19:14:24 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:43:59 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	init_bytecode(t_bytecode *bytecode)
 	ft_bzero(bytecode->header.prog_name, PROG_NAME_LENGTH + 1);
 	ft_bzero(bytecode->header.comment, COMMENT_LENGTH + 1);
 	if (!(bytecode->program = ft_strnew(0)))
-		ft_exit_error("error: can't malloc");
+		ft_exit_error("error: can't ft_memalloc");
 }
 
 void		parse_tokens(t_bytecode *bytecode, t_token *tokens)

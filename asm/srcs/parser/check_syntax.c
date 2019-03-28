@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 16:38:07 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/09 03:26:49 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:44:15 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static void	init_label(t_lab **label, int op_number)
 static void	init_env(t_lab **labels, t_lab **last_lab, t_instr **instructions,
 t_instr **last_op)
 {
-	if (!(*labels = malloc(sizeof(t_lab))))
-		ft_exit_error("error: can't malloc");
+	if (!(*labels = ft_memalloc(sizeof(t_lab))))
+		ft_exit_error("error: can't ft_memalloc");
 	*last_lab = *labels;
 	init_label(last_lab, 0);
-	if (!(*instructions = malloc(sizeof(t_instr))))
-		ft_exit_error("error: can't malloc");
+	if (!(*instructions = ft_memalloc(sizeof(t_instr))))
+		ft_exit_error("error: can't ft_memalloc");
 	*last_op = *instructions;
 	init_instruction(last_op, 0);
 }
@@ -61,8 +61,8 @@ static void	push_labels(t_token **token, t_lab **last, int op_number)
 		{
 			copy_token(**token, &(*last)->label);
 			(*last)->label.value[ft_strlen((*last)->label.value) - 1] = '\0';
-			if (!((*last)->next = malloc(sizeof(t_lab))))
-				ft_exit_error("error: can't malloc");
+			if (!((*last)->next = ft_memalloc(sizeof(t_lab))))
+				ft_exit_error("error: can't ft_memalloc");
 			*last = (*last)->next;
 			init_label(last, op_number);
 		}
@@ -87,8 +87,8 @@ void		check_syntax(t_token *token, t_lab **labels, t_instr **instructions)
 			token = token->next;
 		if (token->type != END)
 		{
-			if (!(last_op->next = malloc(sizeof(t_instr))))
-				ft_exit_error("error: can't malloc");
+			if (!(last_op->next = ft_memalloc(sizeof(t_instr))))
+				ft_exit_error("error: can't ft_memalloc");
 			last_op = last_op->next;
 			init_label(&last_lab, op_number);
 			init_instruction(&last_op, op_number);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 15:14:28 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/08 19:15:24 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:44:29 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static void	reset_tok(char **tok, int size, int *index)
 
 static void	init_lexer(t_token **list, char **tok, int size, t_pos *cursor)
 {
-	if (!(*list = malloc(sizeof(t_token))))
-		ft_exit_error("error: can't malloc");
+	if (!(*list = ft_memalloc(sizeof(t_token))))
+		ft_exit_error("error: can't ft_memalloc");
 	if (!(*tok = ft_strnew(size)))
-		ft_exit_error("error: can't malloc");
+		ft_exit_error("error: can't ft_memalloc");
 	cursor->lin = 1;
 	cursor->col = 1;
 	(*list)->type = END;

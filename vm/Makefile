@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
+#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/28 14:53:40 by agoulas          ###   ########.fr        #
+#    Updated: 2019/03/28 15:47:20 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= corewar
 SOURCES		+=	main.c \
 				corewar.c \
 				corewar_run.c \
-				corewar_dead_or_live.c \
+				check_alive.c \
 				map_memory_color.c \
 				memory.c \
 				arg_utils.c \
@@ -26,13 +26,12 @@ SOURCES		+=	main.c \
 				instructions/instructions_mem_long.c \
 				load_params.c \
 				parse_parameters.c \
-				parse_parameters_id.c \
+				players_init_id.c \
 				setup_players.c \
 				process.c \
 				player.c \
 				dump.c \
-				output.c \
-				endian_utils.c
+				output.c
 
 SRCS_DR		= srcs
 SRCS		= $(addprefix $(SRCS_DR)/, $(SOURCES))

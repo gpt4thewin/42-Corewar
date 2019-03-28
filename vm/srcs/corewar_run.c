@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar_run.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/27 13:19:16 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:56:25 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,24 +100,25 @@ static void			run_cycle(t_corewar *corewar)
 
 t_player			*corewar_run(t_corewar *corewar)
 {
+	char	tmp;
+
 	while (corewar->process_count > 0)
 	{
-		if (corewar->dump_cycle == false
-			&& corewar->dump_nbr_cycle >= 0
+		if (corewar->dump_nbr_cycle >= 0
 			&& corewar->curr_cycle >= corewar->dump_nbr_cycle)
 		{
 			dump(corewar);
-			return (NULL);
+			if (corewar->dump_cycle)
+			{
+				ft_printf("\n");
+				read(STDIN_FILENO, &tmp, 1);
+			}
+			else
+				return (NULL);
 		}
 		run_cycle(corewar);
 		corewar->curr_cycle++;
-		if (corewar->dump_cycle == true
-			&& corewar->curr_cycle >= corewar->dump_nbr_cycle)
-		{
-				dump(corewar);
-				ft_printf("\n");
-		}
-		if (corewar->curr_cycle >= corewar->next_check_cycle && corewar->curr_cycle % 10000 == 0)
+		if (corewar->curr_cycle >= corewar->next_check_cycle)
 		{
 			check_alive(corewar);
 			corewar->next_check_cycle += corewar->cycle_to_die;

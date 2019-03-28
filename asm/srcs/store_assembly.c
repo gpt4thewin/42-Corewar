@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_assembly.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 21:30:19 by mbakhti           #+#    #+#             */
-/*   Updated: 2018/11/04 22:52:54 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:43:58 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		store_assembly(char **instructions, char *filename)
 
 	fd = open_sourcefile(filename);
 	if (!(*instructions = ft_strnew(0)))
-		ft_exit_error("error: can't malloc");
+		ft_exit_error("error: can't ft_memalloc");
 	while ((ret = get_next_line(fd, &line)))
 	{
 		if (ret < 0)

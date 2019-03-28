@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:22:34 by juazouz           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/03/28 17:50:57 by agoulas          ###   ########.fr       */
+=======
+/*   Updated: 2019/03/28 15:49:13 by juazouz          ###   ########.fr       */
+>>>>>>> 5b89b8946c39486fcfb433de9889ce12dffa57e5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +62,8 @@ void		player_load(t_player *player)
 		exit(EXIT_FAILURE);
 	}
 	read_n_bytes(fd, &header, sizeof(header), player->file);
-	header.magic = to_little_endian32(header.magic);
-	header.prog_size = to_little_endian32(header.prog_size);
+	header.magic = convert_endian32(header.magic);
+	header.prog_size = convert_endian32(header.prog_size);
 	if (header.magic != COREWAR_EXEC_MAGIC)
 		read_error(player->file);
 	if (header.prog_size > CHAMP_MAX_SIZE)

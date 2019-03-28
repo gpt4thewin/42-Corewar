@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/28 15:15:30 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:12:00 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@
 **	Defines.
 */
 
+# define DUMP_WIDTH 64
 # define MSG_COMMAND_LINE_ERROR "Error: invalid command line."
+# define VERBOSE_DEATH 1
+# define VERBOSE_LIVE 2
+# define VERBOSE_INST 3
 
-typedef struct s_player			t_player;
 typedef struct s_player			t_player;
 typedef struct s_process		t_process;
 typedef struct s_corewar		t_corewar;
@@ -125,8 +128,8 @@ struct						s_player
 	t_color		color;
 	int			last_check;
 	const char	*file;
+	size_t		prog_size;
 	char		comment[COMMENT_LENGTH + 1];
-	int			header_prog_size;
 	char		prog_name[PROG_NAME_LENGTH + 1];
 	char		program[CHAMP_MAX_SIZE];
 };
@@ -137,6 +140,7 @@ struct						s_player
 
 struct						s_process
 {
+	int			id;
 	t_player	*player;
 	int			exec_cycle;
 	int			pc;
@@ -166,6 +170,7 @@ struct						s_corewar
 	t_list		*processes;
 	int			dump_nbr_cycle;
 	t_bool		dump_cycle;
+	int			verbosity;
 	t_color		map_memory_color[MEM_SIZE];
 	char		memory[MEM_SIZE];
 };
@@ -213,8 +218,6 @@ struct						s_instruction
 	char				opcode;
 	union u_inst_param	param;
 }__attribute__((packed, aligned(1)));
-
-# define MAX_SIZE_DUMP 32
 
 /*
 **	Corewar.

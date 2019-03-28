@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 18:43:25 by juazouz           #+#    #+#             */
-/*   Updated: 2018/11/20 15:57:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 18:43:27 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(char const *src)
 	int		len;
 
 	len = ft_strlen(src);
-	result = malloc(len + 1);
+	result = ft_memalloc(len + 1);
 	if (result == NULL)
 		return (NULL);
 	ft_strcpy(result, src);
