@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:22:34 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 13:46:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:15:21 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void		player_load(t_player *player)
 		ft_fprintf(2, "%s is too big\n", player->file);
 		exit(EXIT_FAILURE);
 	}
+	player->prog_size = header.prog_size;
 	read_n_bytes(fd, &player->program, header.prog_size, player->file);
 	close(fd);
 	ft_memcpy(&player->prog_name, &header.prog_name, sizeof(player->prog_name));

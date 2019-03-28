@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/27 13:28:15 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:13:53 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 
 # define MSG_COMMAND_LINE_ERROR "Error: invalid command line."
 
-typedef struct s_player			t_player;
 typedef struct s_player			t_player;
 typedef struct s_process		t_process;
 typedef struct s_corewar		t_corewar;
@@ -125,6 +124,7 @@ struct						s_player
 	t_color		color;
 	int			last_check;
 	const char	*file;
+	size_t		prog_size;
 	char		prog_name[PROG_NAME_LENGTH + 1];
 	char		program[CHAMP_MAX_SIZE];
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_players.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 13:50:54 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/25 13:35:07 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:15:35 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	setup_player_at_pos(t_corewar *corewar, t_player *player, size_t pos)
 {
 	t_process	*entry_process;
 
-	memcpy_color(corewar, player, CHAMP_MAX_SIZE, pos);
+	memcpy_color(corewar, player, player->prog_size, pos);
 	corewar->map_memory_color[pos] = player->color;
 	entry_process = process_new();
 	entry_process->pc = pos;
