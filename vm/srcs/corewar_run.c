@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/28 12:54:01 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:56:25 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ static void			run_cycle(t_corewar *corewar)
 
 t_player			*corewar_run(t_corewar *corewar)
 {
+	char	tmp;
+
 	while (corewar->process_count > 0)
 	{
 		if (corewar->dump_nbr_cycle >= 0
@@ -107,7 +109,10 @@ t_player			*corewar_run(t_corewar *corewar)
 		{
 			dump(corewar);
 			if (corewar->dump_cycle)
+			{
 				ft_printf("\n");
+				read(STDIN_FILENO, &tmp, 1);
+			}
 			else
 				return (NULL);
 		}
