@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/27 16:46:36 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/28 19:06:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ void	inst_fork(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	t_process	*new_process;
 
 	new_process = process_copy(process);
-	offset = param->params[0].value.dir;
+	offset = param->params[0].value.ind;
 	offset = offset % IDX_MOD;
 	new_process->pc += offset;
+	new_process->exec_cycle = -1;
 	corewar_add_process(corewar, new_process);
 }
 
@@ -86,8 +87,9 @@ void	inst_lfork(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	t_process	*new_process;
 
 	new_process = process_copy(process);
-	offset = param->params[0].value.dir;
+	offset = param->params[0].value.ind;
 	new_process->pc += offset;
+	new_process->exec_cycle = -1;
 	corewar_add_process(corewar, new_process);
 }
 
