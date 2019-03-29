@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/28 18:12:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 13:10:24 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@
 
 # define DUMP_WIDTH 64
 # define MSG_COMMAND_LINE_ERROR "Error: invalid command line."
-# define VERBOSE_DEATH 1
-# define VERBOSE_LIVE 2
-# define VERBOSE_INST 3
+# define VERBOSE_DEATH	0x01
+# define VERBOSE_LIVE	0x02
+# define VERBOSE_INST	0x04
+# define VERBOSE_AFF	0x08
 
 typedef struct s_player			t_player;
 typedef struct s_process		t_process;
 typedef struct s_corewar		t_corewar;
+typedef struct s_arguments		t_arguments;
 typedef struct s_instruction	t_instruction;
 typedef union u_paramval		t_paramval;
 typedef struct s_memaccess		t_memaccess;
@@ -153,11 +155,25 @@ struct						s_process
 };
 
 /*
+**	Program command line arguments.
+*/
+
+struct						s_arguments
+{
+	int			dump_nbr_cycle;
+	t_bool		dump_cycle;
+	t_bool		dump_colors;
+	int			verbosity;
+	t_bool		usage;
+};
+
+/*
 **	Corewar virtual machine.
 */
 
 struct						s_corewar
 {
+	t_arguments	arguments;
 	int			curr_cycle;
 	int			next_check_cycle;
 	int			players_count;
@@ -168,9 +184,6 @@ struct						s_corewar
 	int			total_nbr_live;
 	int			process_count;
 	t_list		*processes;
-	int			dump_nbr_cycle;
-	t_bool		dump_cycle;
-	int			verbosity;
 	t_color		map_memory_color[MEM_SIZE];
 	char		memory[MEM_SIZE];
 };

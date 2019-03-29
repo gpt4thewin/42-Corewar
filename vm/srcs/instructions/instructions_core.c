@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/28 19:50:44 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 13:10:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ void	inst_live(t_corewar *corewar, t_process *process, t_paraminfo *param)
 		{
 			corewar->last_live = &corewar->players[i];
 			process->nbr_live++;
-			ft_printf("Le joueur %d(%s) est en vie.\n",
-				corewar->players[i].id,
-				&corewar->players[i].prog_name);
+			if (corewar->arguments.verbosity & VERBOSE_LIVE)
+				ft_printf("Le joueur %d(%s) est en vie.\n",
+					corewar->players[i].id,
+					&corewar->players[i].prog_name);
 			break ;
 		}
 		i++;
@@ -99,5 +100,6 @@ void	inst_aff(t_corewar *corewar, t_process *process, t_paraminfo *param)
 
 	(void)corewar;
 	val = process_get_reg(process, param->params[0].value.reg_id);
-	ft_printf("Aff: %c\n", val);
+	if (corewar->arguments.verbosity & VERBOSE_AFF)
+		ft_printf("Aff: %c\n", val);
 }

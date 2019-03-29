@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:58:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/22 18:40:14 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/29 12:55:06 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_corewar	*corewar_new(void)
 
 	i = 0;
 	res = ft_memalloc(sizeof(t_corewar));
-	res->dump_nbr_cycle = -1;
+	res->arguments.dump_nbr_cycle = -1;
 	res->cycle_to_die = CYCLE_TO_DIE;
 	res->next_check_cycle = CYCLE_TO_DIE;
 	while (i < MEM_SIZE)
