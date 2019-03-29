@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:41 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 13:05:19 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:07:17 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ int			main(int ac, const char *av[])
 	parse_parameters(corewar, ac, av);
 	if (corewar->arguments.usage)
 	{
-		ft_printf("Usage:\t./corewar [-dump N] [-dump_cycle B] [-v N] [-c] <champion1.cor> <...>");
-		ft_printf("\t-dump: dumps the memory after N cycles and exits.");
-		ft_printf("\t-dump_cycle: dumps the memory every N cycles.");
-		ft_printf("\t-c: colorates the dumped memory.");
-		ft_printf("\t-v: Verbosity levels.");
+		ft_printf("Usage:\t./corewar [-dump N] [-dump_cycle B] [-v N] [-c] <champion1.cor> <...>\n");
+		ft_printf("\t-dump: dumps the memory after N cycles and exits.\n");
+		ft_printf("\t-dump_cycle: dumps the memory every N cycles.\n");
+		ft_printf("\t-c: colorates the dumped memory.\n");
+		ft_printf("\t-v: Verbosity levels.\n");
+		return (EXIT_SUCCESS);
 	}
 	load_players(corewar);
 	setup_players(corewar);

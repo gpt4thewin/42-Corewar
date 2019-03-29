@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 13:47:03 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:09:14 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 	{
 		parse_option(&corewar->arguments, &i, av);
 	}
+	if (corewar->arguments.usage == true)
+		return ;
 	while (i < ac)
 	{
 		parse_champion(corewar, &i, av);
