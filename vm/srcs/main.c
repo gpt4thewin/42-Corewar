@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:41 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 14:56:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 15:48:24 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int			main(int ac, const char *av[])
 	winner = corewar_run(corewar);
 	if (winner != NULL)
 		printf("Le joueur %d(%s) a gagné.\n", winner->id, winner->prog_name);
-	free(corewar);
+	corewar_free(corewar);
 	return (EXIT_SUCCESS);
 }

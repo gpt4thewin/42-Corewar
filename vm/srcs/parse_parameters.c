@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 14:56:32 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 15:25:55 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void			parse_parameters(t_corewar *corewar, int ac, const char *av[])
 		corewar_die("ERROR: no argument");
 	}
 	i = 1;
-	while (av[i] != NULL && av[i][0] == '-')
+	while (av[i] != NULL && av[i][0] == '-' && !ft_strequ(av[i], "-n"))
 	{
 		parse_option(&corewar->arguments, &i, av);
 	}

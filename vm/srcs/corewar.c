@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:58:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 12:55:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 15:53:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,18 @@ void		corewar_add_process(t_corewar *corewar, t_process *process)
 {
 	ft_lstadd(&corewar->processes, ft_lstnew(process, sizeof(t_process)));
 	corewar->process_count++;
+}
+
+void	corewar_free(t_corewar *corewar)
+{
+	t_list		*curr;
+	t_process	*process;
+
+	curr = corewar->processes;
+	while (curr != NULL)
+	{
+		process = (t_process*)curr->content;
+		ft_lstdelone(&curr, NULL);
+	}
+	free(corewar);
 }

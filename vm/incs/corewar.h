@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 15:11:48 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 15:48:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ void			check_alive(t_corewar *corewar);
 t_corewar		*corewar_new(void);
 t_player		*corewar_run(t_corewar *corewar);
 void			corewar_die(char *msg);
+void			corewar_free(t_corewar *corewar);
 void			corewar_add_process(t_corewar *corewar, t_process *process);
 
 /*
