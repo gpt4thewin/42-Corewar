@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 15:56:51 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 13:42:51 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 13:49:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo)
 	size_t				pos;
 	char				types;
 	struct s_inst_param	*multi;
-	t_arg_type			type;
 
 	pos = 0;
 	ft_bzero(paraminfo, sizeof(t_paraminfo));
@@ -76,13 +75,6 @@ t_bool			load_params(t_op *op, t_instruction *inst, t_paraminfo *paraminfo)
 		if (!load_param(&paraminfo->params[i], &pos, &multi->parameters))
 			return (false);
 		paraminfo->args_number++;
-		i++;
-	}
-	while (i < MAX_ARGS_NUMBER)
-	{
-		type = types << (2 * i) & 0x03;
-		if (type != 0)
-			return (false);
 		i++;
 	}
 	return (true);
