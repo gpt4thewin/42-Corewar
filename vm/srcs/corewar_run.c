@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 12:55:49 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 13:38:53 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ static void			execute_process_cycle(t_corewar *corewar, t_process *process)
 
 	if (process->op == NULL)
 		return ;
+	if (corewar->arguments.verbosity & VERBOSE_INST)
+	{
+		print_instruction(process);
+	}
 	func = g_op_func_tab[(int)process->op->opcode];
 	func(corewar, process, &process->paraminfo);
 	if (!process->is_jump)

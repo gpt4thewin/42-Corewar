@@ -1,40 +1,158 @@
-.name "debug"
-.comment "debug source file"
+;.name "debug"
+;.comment "debug source file";
+.name ""
+.comment ""
 
-ld %1, r1 ; 2 - 3 = 10 01 00 00 = 0x90
-ld %2, r2
-st r1, r3
-st r2, r4
-ld %3, r3
-ld %4, r4
-ld %5, r5
-ld %6, r6
-ld %7, r7
-ld %8, r8
-ld %9, r9
-ld %10, r10
-ld %11, r11
-ld %12, r12
-ld %13, r13
-ld %14, r14
-ld %15, r15
-ld %16, r16
+;; ==== TEST fork + copie ====
 
-sti r1, :fin, %201
-sti r2, :fin, %202
-sti r3, :fin, %203
-sti r4, :fin, %204
-sti r5, :fin, %205
-sti r6, :fin, %206
-sti r7, :fin, %207
-sti r8, :fin, %208
-sti r9, :fin, %209
-sti r10, :fin, %210
-sti r11, :fin, %211
-sti r12, :fin, %212
-sti r13, :fin, %213
-sti r14, :fin, %214
-sti r15, :fin, %215
-sti r16, :fin, %216
+;sti r1,%1,%:live
+;
+;;r2 = offset
+;;r5 = step
+;;r3 = buffer
+;ld r5,4
+;payload:
+;ld r2,0
+;ldi :payload,r2,r3
+;sti r3,r2,%:target
+;add r5,r2,r2
+;ld r2,r6
+;zjmp :payload
+;fork %:loop
+;loop:
+;live:
+;live %0
+;
+;add r3,r2,r2
+;ld %0,r16
+;zjmp %:loop
+;
+;payload_end:
+;target:
 
-fin:
+;; ==== TEST long ld ====
+
+ld %1,r2
+ld %1,r3
+sti r1,%1,%:live
+loop:
+live:
+live %0
+lldi %:loop,r2,r4
+add r3,r2,r2
+aff r4
+ld %0,r16
+zjmp %:loop
+
+;; ==== TEST fork ====
+
+sti r1,%1,%:live
+ld %33,r2
+ld %1,r3
+loop:
+live:
+live %0
+ldi :storage,r2,r10
+sti r10,r2,%:storage
+;aff r2
+
+fork %:loop
+add r3,r2,r2
+ld %0,r16
+zjmp %:loop
+storage:
+
+;; ==== TEST logic + general ====
+; "SALT"
+
+;ld %33,r14
+;ld %1,r13
+;ld %0,r6
+;ld %4,r5
+;sti r1,%1,%:live
+;loop:
+;aff r14
+;live:
+;live %0
+;ld %7,r2
+;ld %8,r3
+;or r2,r3,r4
+;sti r4,r5,%:storage
+;add r6,r5,r6
+;
+;ld %15,r2
+;ld %5,r3
+;and r2,r3,r4
+;sti r4,r5,%:storage
+;add r6,r5,r6
+;
+;ld %15,r2
+;ld %17,r3
+;xor r2,r3,r4
+;sti r4,r5,%:storage
+;add r6,r5,r6
+;
+;;LLDI ?
+;;add r6,r5,r6
+;
+;ld %0,r16
+;fork %:fork
+;zjmp %:loop
+;fork:
+;add r13,r14,r14
+;zjmp %:loop
+;
+;storage:
+
+;; ==== TEST math ====
+; "SALT"
+
+;ld %80,r2
+;ld %3,r3
+;add r2,r3,r4
+;aff r4
+;
+;ld %70,r2
+;ld %5,r3
+;sub r2,r3,r4
+;aff r4
+;
+;ld %82,r2
+;ld %-6,r3
+;add r2,r3,r4
+;aff r4
+;
+;ld %80,r2
+;ld %4,r3
+;add r2,r3,r4
+;aff r4
+
+;; ==== TEST fork ====
+
+;sti r1, %1, %:live
+;fork:
+;fork %:fork
+;live:
+;live %0
+;ld %0,r16
+;aff r16
+;zjmp %:live
+
+;; === TEST aff =======
+;sti r1, %1, %:live
+;;fork %:newproc
+;live:
+;live %0
+;ld %41,r3
+;add r3,r2,r3
+;aff r3
+;ld %0,r16
+;zjmp %:live
+;
+;newproc:
+;ld %42,r3
+;add r3,r1,r3
+;aff r3
+;ld %0,r16
+;zjmp %:newproc
+

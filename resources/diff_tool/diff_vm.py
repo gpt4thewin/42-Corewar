@@ -1,11 +1,11 @@
 #! /usr/bin/python3
 
 # Binaries path:
-ZAZ_VM = "/Users/mbakhti/Desktop/Corewar/resources/diff_tool/bin/zaz_corewar"
-USR_VM = "/Users/mbakhti/Desktop/Corewar/vm/corewar"
+ZAZ_VM = "resources/diff_tool/bin/zaz_corewar"
+USR_VM = "vm/corewar"
 
 # Results path:
-RESULTS_DIRECTORY = "/Users/mbakhti/Desktop/Corewar/resources/diff_tool/results"
+RESULTS_DIRECTORY = "resources/diff_tool/results"
 
 import shutil, os, sys, argparse
 

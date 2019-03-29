@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 13:10:24 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 13:26:54 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,10 +337,16 @@ void			inst_lldi(t_corewar *corewar, t_process *process, t_paraminfo*);
 void			inst_lfork(t_corewar *corewar, t_process *process, t_paraminfo*);
 void			inst_aff(t_corewar *corewar, t_process *process, t_paraminfo*);
 
+/*
+**	print_instruction.c
+*/
+
+void		print_instruction(t_process *process);
 
 /*
 **
 */
 
 void			print_start_fight(t_corewar *corewar);
+
 #endif

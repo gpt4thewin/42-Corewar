@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/28 15:47:20 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/29 13:39:16 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SOURCES		+=	main.c \
 				instructions/instructions_logic.c \
 				instructions/instructions_mem.c \
 				instructions/instructions_mem_long.c \
+				print_instruction.c \
 				load_params.c \
 				parse_parameters.c \
 				players_init_id.c \
