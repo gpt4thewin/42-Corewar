@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 12:59:50 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 13:29:21 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void		parse_champion(t_corewar *corewar, int *pos, const char *av[])
 	player->id = -1;
 	if (ft_strequ("-n", av[*pos]))
 	{
-		(*pos)++;
 		player->id = parse_number(pos, av);
+		(*pos)++;
 	}
 	if (av[*pos] == NULL)
 		corewar_die(MSG_COMMAND_LINE_ERROR);
