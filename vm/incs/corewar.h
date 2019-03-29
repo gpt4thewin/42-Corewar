@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 14:51:41 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 15:11:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,8 +266,6 @@ int				get_physical_addr(int addr);
 t_bool			is_valid_reg(int reg_id);
 int				sizeof_param_type(t_arg_type type);
 t_op			*get_op(int opcode);
-void			param_at(t_instruction *inst, int pos, t_arg_type type,
-	void *res);
 
 /*
 **	load_params.c
