@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 13:29:21 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 13:47:03 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ static void		players_init_color(t_corewar *corewar)
 	int cpt;
 
 	cpt = 0;
-	while (cpt < corewar->players_count && cpt < MAX_PLAYERS)
+	while (cpt < corewar->players_count && (cpt + 1) <= MAX_PLAYERS)
 	{
-		corewar->players[cpt].color = (cpt + 1) % MAX_PLAYERS;
+		corewar->players[cpt].color = (cpt + 1);
 		cpt++;
 	}
 }
