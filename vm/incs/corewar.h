@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 14:44:14 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:51:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ struct			s_instruction
 } __attribute__((packed,aligned(1)));
 
 /*
-**	Corewar.
+**	corewar.c
 */
 
 int				kill_dead_process(t_corewar *corewar);
@@ -207,12 +207,9 @@ t_corewar		*corewar_new(void);
 t_player		*corewar_run(t_corewar *corewar);
 void			corewar_die(char *msg);
 void			corewar_add_process(t_corewar *corewar, t_process *process);
-t_reg			corewar_reg_read(t_corewar *corewar, int pc, int addr);
-void			corewar_reg_write(t_corewar *corewar, int pc, int addr,
-	t_reg val);
 
 /*
-**	Memory.
+**	memory.c
 */
 
 int				generic_read(t_corewar *corewar, t_memaccess *memaccess,
@@ -221,31 +218,39 @@ void			generic_write(t_corewar *corewar, t_memaccess *memaccess,
 	t_param param, int val);
 
 /*
-**	Memory dump command line option.
+**	dump.c
 */
 
 void			dump(t_corewar *corewar);
 
 /*
-**	Player setup.
+**	setup_players.c
 */
 
 void			setup_players(t_corewar *corewar);
+void			*memcpy_color(t_corewar *corewar, t_player *player, size_t num,
+	size_t pos);
 
 /*
-**	Command line parser.
+**	parse_parameters.c
 */
-void			players_init_id(t_corewar *corewar);
+
 void			parse_parameters(t_corewar *corewar, int ac, const char *av[]);
 
 /*
-**	Player.
+**	players_init_id.c
+*/
+
+void			players_init_id(t_corewar *corewar);
+
+/*
+**	player.c
 */
 
 void			player_load(t_player *player);
 
 /*
-**	Process.
+**	process.c
 */
 
 t_process		*process_new(void);
@@ -272,14 +277,7 @@ t_bool			load_params(t_op *op, t_instruction *inst,
 	t_paraminfo *paraminfo);
 
 /*
-**	LOad color on the map_memory_color.
-*/
-
-void			*memcpy_color(t_corewar *corewar, t_player *player, size_t num,
-	size_t pos);
-
-/*
-**	Instructions processing.
+**	instructions/instructions_*.c
 */
 
 extern	void	(*g_op_func_tab[])(t_corewar*, t_process*, t_paraminfo*);
@@ -322,6 +320,10 @@ void			inst_aff(t_corewar *corewar, t_process *process,
 */
 
 void			print_instruction(t_process *process);
+
+/*
+**	output.c
+*/
 
 void			print_start_fight(t_corewar *corewar);
 
