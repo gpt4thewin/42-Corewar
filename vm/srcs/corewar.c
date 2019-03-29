@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:58:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 15:53:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 16:01:31 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		corewar_add_process(t_corewar *corewar, t_process *process)
 	corewar->process_count++;
 }
 
-void	corewar_free(t_corewar *corewar)
+void		corewar_free(t_corewar *corewar)
 {
 	t_list		*curr;
 	t_process	*process;

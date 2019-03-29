@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 19:24:52 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/29 15:40:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 16:01:19 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		kill_dead_process(t_corewar *corewar)
 		process = (t_process*)(*curr)->content;
 		if (process->nbr_live <= 0)
 		{
-			// if (corewar->arguments.verbosity & VERBOSE_DEATH)
+			if (corewar->arguments.verbosity & VERBOSE_DEATH)
 				ft_printf("Killing process %d (CTD %d)\n",
 					process->id, corewar->cycle_to_die);
 			ft_lstdelone(curr, NULL);
