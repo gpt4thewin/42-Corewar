@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:22:34 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/28 19:36:40 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:03:30 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	player_cpy(t_player *player, t_header header, int fd)
 	ft_memcpy(&player->comment, &header.comment, sizeof(header.comment));
 	player->prog_size = header.prog_size;
 	if (player->prog_name[0] == '\0')
-		ft_memcpy(player->prog_name,"ANONYMOUS", 8);
+		ft_memcpy(player->prog_name, "ANONYMOUS", 8);
 	if (player->comment[0] == '\0')
-		ft_memcpy(player->comment,"NO COMMENTS", 8);
+		ft_memcpy(player->comment, "NO COMMENTS", 8);
 }
 
 void		player_load(t_player *player)

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 13:30:24 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:03:14 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,11 @@ static void		parse_option(t_arguments *arguments, int *pos, const char *av[])
 		arguments->dump_nbr_cycle = parse_number(pos, av);
 	}
 	else if (ft_strequ("-v", av[*pos]))
-	{
 		arguments->verbosity = parse_number(pos, av);
-	}
 	else if (ft_strequ("-c", av[*pos]))
-	{
 		arguments->dump_colors = true;
-	}
 	else if (ft_strequ("-h", av[*pos]))
-	{
 		arguments->usage = true;
-	}
 	else
 	{
 		ft_fprintf(2, "Unknown option : %s\n", av[*pos]);

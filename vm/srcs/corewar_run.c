@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 13:38:53 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:02:03 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static t_op			*get_op(int opcode)
 **	Runs the next instruction of the specified process.
 */
 
-static void			execute_process_cycle(t_corewar *corewar, t_process *process)
+static void			execute_process_cycle(t_corewar *corewar,
+	t_process *process)
 {
 	void			(*func)(t_corewar*, t_process*, t_paraminfo*);
 
@@ -64,7 +65,8 @@ static void			execute_process_cycle(t_corewar *corewar, t_process *process)
 		process->is_jump = false;
 }
 
-static void			prepare_process_cycle(t_corewar *corewar, t_process *process)
+static void			prepare_process_cycle(t_corewar *corewar,
+	t_process *process)
 {
 	t_instruction	*inst;
 
