@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/29 13:39:16 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/29 14:45:18 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SOURCES		+=	main.c \
 				check_alive.c \
 				map_memory_color.c \
 				memory.c \
-				arg_utils.c \
 				instructions/instructions_core.c \
 				instructions/instructions_math.c \
 				instructions/instructions_logic.c \
@@ -32,7 +31,8 @@ SOURCES		+=	main.c \
 				process.c \
 				player.c \
 				dump.c \
-				output.c
+				output.c \
+				utils.c
 
 SRCS_DR		= srcs
 SRCS		= $(addprefix $(SRCS_DR)/, $(SOURCES))

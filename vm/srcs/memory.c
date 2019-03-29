@@ -6,21 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:08:21 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 14:34:04 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:41:43 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-int				get_physical_addr(int addr)
-{
-	if (addr < 0)
-	{
-		addr += MEM_SIZE;
-		addr += (-addr / MEM_SIZE) * MEM_SIZE;
-	}
-	return (addr % MEM_SIZE);
-}
 
 static int		get_virtual_addr(t_memaccess *memaccess)
 {

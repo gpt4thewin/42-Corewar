@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 14:39:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:44:14 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,6 @@ void			corewar_reg_write(t_corewar *corewar, int pc, int addr,
 **	Memory.
 */
 
-int				get_physical_addr(int addr);
 int				generic_read(t_corewar *corewar, t_memaccess *memaccess,
 	t_param param);
 void			generic_write(t_corewar *corewar, t_memaccess *memaccess,
@@ -255,17 +254,13 @@ void			process_set_reg(t_process *process, char reg_id, t_reg val);
 t_reg			process_get_reg(t_process *process, char reg_id);
 
 /*
-**	Utils.
+**	utils.c
 */
 
-int				to_little_endian32(int val);
-
-/*
-**	Instruction utils.
-*/
-
+int				get_physical_addr(int addr);
 t_bool			is_valid_reg(int reg_id);
 int				sizeof_param_type(t_arg_type type);
+t_op			*get_op(int opcode);
 void			param_at(t_instruction *inst, int pos, t_arg_type type,
 	void *res);
 

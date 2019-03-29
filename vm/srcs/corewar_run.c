@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 14:02:03 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:45:04 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ static int			get_params_size(t_paraminfo *paraminfo)
 		res += sizeof_param_type(paraminfo->params[i].type);
 		i++;
 	}
-	return (res);
-}
-
-static t_op			*get_op(int opcode)
-{
-	t_op	*res;
-
-	if (opcode >= OP_TAB_SIZE || opcode < 1)
-		return (NULL);
-	res = &g_op_tab[opcode - 1];
 	return (res);
 }
 
