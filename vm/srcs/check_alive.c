@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar_dead_or_live.c                             :+:      :+:    :+:   */
+/*   check_alive.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 19:24:52 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/22 19:25:26 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/29 12:38:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,12 @@ int		kill_dead_process(t_corewar *corewar)
 
 void	check_alive(t_corewar *corewar)
 {
-	t_bool		force_check;
 	int			total_nbr_live;
 
 	total_nbr_live = kill_dead_process(corewar);
-	if (corewar->checks_count >= MAX_CHECKS)
+	if (corewar->checks_count >= MAX_CHECKS || total_nbr_live > NBR_LIVE)
 	{
 		corewar->checks_count = 0;
-		force_check = true;
-	}
-	else
-	{
-		force_check = false;
-	}
-	if (force_check || total_nbr_live > NBR_LIVE)
-	{
 		if (corewar->cycle_to_die <= CYCLE_DELTA)
 			corewar->cycle_to_die = 0;
 		else
