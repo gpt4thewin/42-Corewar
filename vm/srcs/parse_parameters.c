@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:40:40 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/28 13:16:27 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 12:21:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int		parse_number(int *pos, const char *av[])
 	int		i;
 	int		res;
 
+	(*pos)++;
 	if (av[*pos] == NULL || av[*pos][0] == '\0')
 		corewar_die(MSG_COMMAND_LINE_ERROR);
 	str = (char*)av[*pos];
@@ -31,7 +32,6 @@ static int		parse_number(int *pos, const char *av[])
 		res += str[i] - '0';
 		i++;
 	}
-	(*pos)++;
 	return (res);
 }
 
@@ -62,18 +62,15 @@ static void		parse_option(t_corewar *corewar, int *pos, const char *av[])
 {
 	if (ft_strequ("-dump_cycle", av[*pos]))
 	{
-		(*pos)++;
 		corewar->dump_cycle = true;
 		corewar->dump_nbr_cycle = parse_number(pos, av);
 	}
 	else if (ft_strequ("-dump", av[*pos]))
 	{
-		(*pos)++;
 		corewar->dump_nbr_cycle = parse_number(pos, av);
 	}
 	else if (ft_strequ("-v", av[*pos]))
 	{
-		(*pos)++;
 		corewar->verbosity = parse_number(pos, av);
 	}
 	else
