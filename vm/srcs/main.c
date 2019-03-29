@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:41 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 14:05:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 14:56:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int			main(int ac, const char *av[])
 		ft_printf("\t-dump_cycle: dumps the memory every N cycles.");
 		ft_printf("\t-c: colorates the dumped memory.");
 		ft_printf("\t-v: Verbosity levels.");
+		return (EXIT_SUCCESS);
 	}
 	load_players(corewar);
 	setup_players(corewar);
