@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:44:00 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/28 13:01:31 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/29 12:45:49 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ void		dump(t_corewar *corewar)
 	while (i < MEM_SIZE)
 	{
 		print_hex_color(corewar, i);
-		if (((i + 1) % DUMP_WIDTH != 0))
-			ft_printf(" ");
-		else
+		if (((i + 1) % DUMP_WIDTH == 0))
 		{
 			ft_printf("\n");
 			if (i < (MEM_SIZE - 1))
