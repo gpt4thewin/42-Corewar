@@ -88,6 +88,6 @@ typedef struct				s_op
 
 # define OP_TAB_SIZE 17
 
-extern	t_op		g_op_tab[];
+extern	t_op				g_op_tab[];
 
 #endif

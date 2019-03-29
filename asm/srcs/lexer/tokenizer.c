@@ -32,10 +32,8 @@ t_func	g_is_token_func[] =
 static void	tokenize(t_token new, t_token **last)
 {
 	(*last)->type = new.type;
-	if (!((*last)->value = ft_strdup(new.value)))
-		ft_exit_error("error: can't ft_memalloc");
-	if (!((*last)->next = ft_memalloc(sizeof(t_token))))
-		ft_exit_error("error: can't ft_memalloc");
+	(*last)->value = ft_strdup(new.value);
+	(*last)->next = ft_memalloc(sizeof(t_token));
 	(*last) = (*last)->next;
 	(*last)->type = END;
 	(*last)->value = NULL;

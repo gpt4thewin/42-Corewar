@@ -38,10 +38,8 @@ static void	reset_tok(char **tok, int size, int *index)
 
 static void	init_lexer(t_token **list, char **tok, int size, t_pos *cursor)
 {
-	if (!(*list = ft_memalloc(sizeof(t_token))))
-		ft_exit_error("error: can't ft_memalloc");
-	if (!(*tok = ft_strnew(size)))
-		ft_exit_error("error: can't ft_memalloc");
+	*list = ft_memalloc(sizeof(t_token));
+	*tok = ft_strnew(size);
 	cursor->lin = 1;
 	cursor->col = 1;
 	(*list)->type = END;

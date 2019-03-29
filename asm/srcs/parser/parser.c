@@ -44,8 +44,7 @@ static void	init_bytecode(t_bytecode *bytecode)
 	bytecode->header.magic = COREWAR_EXEC_MAGIC;
 	ft_bzero(bytecode->header.prog_name, PROG_NAME_LENGTH + 1);
 	ft_bzero(bytecode->header.comment, COMMENT_LENGTH + 1);
-	if (!(bytecode->program = ft_strnew(0)))
-		ft_exit_error("error: can't ft_memalloc");
+	bytecode->program = ft_strnew(0);
 }
 
 void		parse_tokens(t_bytecode *bytecode, t_token *tokens)

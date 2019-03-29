@@ -36,9 +36,6 @@ fclean :
 
 re : fclean all
 
-test_asm : $(ASM)
-	@python3 resources/diff_tool/diff_asm.py $(ARGS)
-
 norme :
 	@norminette `find . -type f \( -name *.c -o -name *.h \)` \
 	| if ! grep Error -B 1 --color; then printf "NORME OK\n"; fi

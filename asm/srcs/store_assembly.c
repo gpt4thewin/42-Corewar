@@ -38,8 +38,7 @@ void		store_assembly(char **instructions, char *filename)
 	char	*line;
 
 	fd = open_sourcefile(filename);
-	if (!(*instructions = ft_strnew(0)))
-		ft_exit_error("error: can't ft_memalloc");
+	*instructions = ft_strnew(0);
 	while ((ret = get_next_line(fd, &line)))
 	{
 		if (ret < 0)

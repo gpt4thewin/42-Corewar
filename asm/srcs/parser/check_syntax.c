@@ -61,8 +61,7 @@ static void	push_labels(t_token **token, t_lab **last, int op_number)
 		{
 			copy_token(**token, &(*last)->label);
 			(*last)->label.value[ft_strlen((*last)->label.value) - 1] = '\0';
-			if (!((*last)->next = ft_memalloc(sizeof(t_lab))))
-				ft_exit_error("error: can't ft_memalloc");
+			(*last)->next = ft_memalloc(sizeof(t_lab));
 			*last = (*last)->next;
 			init_label(last, op_number);
 		}
@@ -87,8 +86,7 @@ void		check_syntax(t_token *token, t_lab **labels, t_instr **instructions)
 			token = token->next;
 		if (token->type != END)
 		{
-			if (!(last_op->next = ft_memalloc(sizeof(t_instr))))
-				ft_exit_error("error: can't ft_memalloc");
+			last_op->next = ft_memalloc(sizeof(t_instr));
 			last_op = last_op->next;
 			init_label(&last_lab, op_number);
 			init_instruction(&last_op, op_number);
