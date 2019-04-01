@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_header.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:31:14 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/08 19:14:07 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/04/01 13:58:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	parse_comment(char *comment, char *string)
 	size = ft_strlen(string) - 2;
 	if (size > COMMENT_LENGTH)
 	{
-		ft_printf("Champion comment too long (Max length %d)\n",
+		ft_fprintf(2, "Champion comment too long (Max length %d)\n",
 		COMMENT_LENGTH);
 		exit(EXIT_FAILURE);
 	}
@@ -33,7 +33,7 @@ static void	parse_name(char *prog_name, char *string)
 	size = ft_strlen(string) - 2;
 	if (size > PROG_NAME_LENGTH)
 	{
-		ft_printf("Champion name too long (Max length %d)\n",
+		ft_fprintf(2, "Champion name too long (Max length %d)\n",
 		PROG_NAME_LENGTH);
 		exit(EXIT_FAILURE);
 	}

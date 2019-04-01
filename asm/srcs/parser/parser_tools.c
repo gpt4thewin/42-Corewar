@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:20:52 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/08 19:14:26 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/04/01 14:00:28 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ void	display_faulty_token(t_token token)
 	name[11] = "DIRECT";
 	name[12] = "DIRECT_LABEL";
 	name[13] = "INSTRUCTION";
-	ft_printf(" [TOKEN][%03d:%03d] %s",
+	ft_fprintf(2, " [TOKEN][%03d:%03d] %s",
 	token.position.lin, token.position.col, name[token.type]);
 	if (token.type != ENDLINE)
-		ft_printf(" \"%s\"\n", token.value);
+		ft_fprintf(2, " \"%s\"\n", token.value);
 	else
-		ft_printf("\n");
+		ft_fprintf(2, "\n");
 }

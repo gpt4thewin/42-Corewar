@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 13:47:09 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/08 19:14:25 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/04/01 13:59:45 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	syntax_error(t_token token)
 {
-	ft_printf("Syntax error at token");
+	ft_fprintf(2, "Syntax error at token");
 	display_faulty_token(token);
 	exit(EXIT_FAILURE);
 }
 
 void	invalid_instruction_error(t_token token)
 {
-	ft_printf("Invalid instruction at token");
+	ft_fprintf(2, "Invalid instruction at token");
 	display_faulty_token(token);
 	exit(EXIT_FAILURE);
 }
@@ -40,20 +40,21 @@ void	invalid_parameter_error(int i, t_instr op)
 		type = "indirect";
 	else
 		type = "";
-	ft_printf("Invalid parameter %d type %s for instruction %s\n",
+	ft_fprintf(2, "Invalid parameter %d type %s for instruction %s\n",
 		i, type, op.op.value);
 	exit(EXIT_FAILURE);
 }
 
 void	invalid_label_error(char *label, t_token token)
 {
-	ft_printf("No such label %s while attempting to dereference token", label);
+	ft_fprintf(2, "No such label %s while attempting to dereference token",
+		label);
 	display_faulty_token(token);
 	exit(EXIT_FAILURE);
 }
 
 void	invalid_parameter_count(t_instr op)
 {
-	ft_printf("Invalid parameter count for instruction %s\n", op.op.value);
+	ft_fprintf(2, "Invalid parameter count for instruction %s\n", op.op.value);
 	exit(EXIT_FAILURE);
 }
