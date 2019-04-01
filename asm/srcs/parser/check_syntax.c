@@ -42,12 +42,10 @@ static void	init_label(t_lab **label, int op_number)
 static void	init_env(t_lab **labels, t_lab **last_lab, t_instr **instructions,
 t_instr **last_op)
 {
-	if (!(*labels = ft_memalloc(sizeof(t_lab))))
-		ft_exit_error("error: can't ft_memalloc");
+	*labels = ft_memalloc(sizeof(t_lab));
 	*last_lab = *labels;
 	init_label(last_lab, 0);
-	if (!(*instructions = ft_memalloc(sizeof(t_instr))))
-		ft_exit_error("error: can't ft_memalloc");
+	*instructions = ft_memalloc(sizeof(t_instr));
 	*last_op = *instructions;
 	init_instruction(last_op, 0);
 }
