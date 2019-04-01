@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/02 02:49:48 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/04/01 15:48:56 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/01 15:51:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ _Bool			is_instruction(char *tok, char next, t_pos cursor)
 	if (ft_strchr("% \t\n\0", next) || next == SEPARATOR_CHAR)
 	{
 		if (tok[0] != COMMENT_CHAR && tok[0] != ';' && (tok[0] != '"'
-		|| (tok[0] == '"' && next == '\0')))
+			|| (tok[0] == '"' && next == '\0')))
 			return (check_lexical_error(tok, cursor));
 	}
 	return (false);
