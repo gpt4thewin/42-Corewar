@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:41:00 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 14:45:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/01 15:44:38 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 
 int				get_physical_addr(int addr)
 {
-	if (addr < 0)
+	int	res;
+
+	res = addr;
+	if (res < 0)
 	{
-		addr += MEM_SIZE;
-		addr += (-addr / MEM_SIZE) * MEM_SIZE;
+		res += MEM_SIZE;
+		res += (-addr / MEM_SIZE) * MEM_SIZE;
 	}
-	return (addr % MEM_SIZE);
+	return (res % MEM_SIZE);
 }
 
 /*
