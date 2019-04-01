@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 14:45:04 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/01 15:28:35 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_player			*corewar_run(t_corewar *corewar)
 	while (corewar->process_count > 0)
 	{
 		if (corewar->arguments.dump_nbr_cycle >= 0
-			&& corewar->curr_cycle >= corewar->arguments.dump_nbr_cycle)
+			&& corewar->curr_cycle % corewar->arguments.dump_nbr_cycle == 0)
 		{
 			dump(corewar);
 			if (corewar->arguments.dump_cycle)
