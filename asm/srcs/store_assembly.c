@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_assembly.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 21:30:19 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/28 18:43:58 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/04/01 10:41:50 by mbakhti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void		store_assembly(char **instructions, char *filename)
 		concat_line(instructions, line);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	close(fd);
 }
