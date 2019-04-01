@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 19:24:52 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/29 16:05:47 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/01 12:33:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	check_alive(t_corewar *corewar)
 	if (corewar->checks_count >= MAX_CHECKS || total_nbr_live > NBR_LIVE)
 	{
 		if (corewar->arguments.verbosity & VERBOSE_CDT)
-			ft_printf("Decrementing CDT to %d\n", corewar->cycle_to_die);
+			ft_printf("Decrementing CTD to %d\n", corewar->cycle_to_die);
 		corewar->checks_count = 0;
 		if (corewar->cycle_to_die <= CYCLE_DELTA)
 			corewar->cycle_to_die = 0;
