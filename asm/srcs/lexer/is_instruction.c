@@ -21,7 +21,7 @@ static _Bool	check_lexical_error(char *tok, t_pos cursor)
 	{
 		if (!ft_strchr(LABEL_CHARS, tok[i]))
 		{
-			ft_printf("Lexical error at [%d:%d]\n", cursor.lin, cursor.col + i);
+			ft_fprintf(2, "Lexical error at [%d:%d]\n", cursor.lin, cursor.col + i);
 			exit(EXIT_FAILURE);
 		}
 		i++;
