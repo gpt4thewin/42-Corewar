@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compile_champion.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 02:16:52 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/28 18:45:23 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/04/01 10:57:13 by mbakhti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void			get_output_name(char *filename, char **output)
 {
 	filename[ft_strlen(filename) - 2] = '\0';
 	if (!(*output = ft_strjoin(filename, ".cor")))
-		ft_exit_error("error: can't malloc");
 	filename[ft_strlen(filename)] = '.';
 }
 
