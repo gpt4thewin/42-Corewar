@@ -18,11 +18,11 @@ static void	init_instruction(t_instr **instruction, int op_number)
 
 	(*instruction)->op_number = op_number;
 	(*instruction)->size = 0;
-	(*instruction)->op = (t_token){0, NULL, {0, 0}, NULL};
+	ft_bzero(&((*instruction)->op), sizeof(t_token));
 	i = 0;
 	while (i < MAX_ARGS_NUMBER)
 	{
-		(*instruction)->param[i] = (t_token){0, NULL, {0, 0}, NULL};
+		ft_bzero(&(*instruction)->param[i], sizeof(t_token));
 		(*instruction)->arg[i] = 0;
 		i++;
 	}
@@ -34,7 +34,7 @@ static void	init_instruction(t_instr **instruction, int op_number)
 static void	init_label(t_lab **label, int op_number)
 {
 	(*label)->op_number = op_number;
-	(*label)->label = (t_token){0, NULL, {0, 0}, NULL};
+	ft_bzero(&(*label)->label, sizeof(t_token));
 	(*label)->offset = 0;
 	(*label)->next = NULL;
 }
@@ -53,7 +53,7 @@ t_instr **last_op)
 static void	push_labels(t_token **token, t_lab **last, int op_number)
 {
 	while ((*token)->type == ENDLINE || (*token)->type == COMMENT
-	|| (*token)->type == LABEL)
+		|| (*token)->type == LABEL)
 	{
 		if ((*token)->type == LABEL)
 		{
