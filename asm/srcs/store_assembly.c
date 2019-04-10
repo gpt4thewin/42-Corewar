@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_assembly.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 21:30:19 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/04/01 10:41:50 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/04/03 13:44:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void		store_assembly(char **instructions, char *filename)
 	while ((ret = get_next_line(fd, &line)))
 	{
 		if (ret < 0)
+		{
 			ft_exit_error("error: can't read sourcefile");
+			ft_strdel(&line);
+		}
 		concat_line(instructions, line);
 		ft_strdel(&line);
 	}
