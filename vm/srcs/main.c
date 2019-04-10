@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:41 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/04/01 13:51:30 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/10 18:22:28 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ static void	load_players(t_corewar *corewar)
 	}
 }
 
+static void	print_usage(void)
+{
+	ft_printf("Usage:\t./corewar [-dump N] [-dump_cycle B] [-v N] [-c]"
+		" <champion1.cor> <...>\n");
+	ft_printf("\t-dump: dumps the memory after N cycles and exits.\n");
+	ft_printf("\t-dump_cycle: dumps the memory every N cycles.\n");
+	ft_printf("\t-c: colorates the dumped memory.\n");
+	ft_printf("\t-v: Verbosity levels.\n");
+	ft_printf("\t\t%5s : %-20s\n", "1", "Prints death");
+	ft_printf("\t\t%5s : %-20s\n", "2", "Prints live");
+	ft_printf("\t\t%5s : %-20s\n", "4", "Prints instructions");
+	ft_printf("\t\t%5s : %-20s\n", "8", "Prints aff output");
+	ft_printf("\t\t%5s : %-20s\n", "16", "Prints CDT");
+	ft_printf("\t\t%5s : %-20s\n", "32", "Prints process count");
+}
+
 int			main(int ac, const char *av[])
 {
 	t_corewar	*corewar;
@@ -33,12 +49,7 @@ int			main(int ac, const char *av[])
 	parse_parameters(corewar, ac, av);
 	if (corewar->arguments.usage)
 	{
-		ft_printf("Usage:\t./corewar [-dump N] [-dump_cycle B] [-v N] [-c]"
-			" <champion1.cor> <...>\n");
-		ft_printf("\t-dump: dumps the memory after N cycles and exits.\n");
-		ft_printf("\t-dump_cycle: dumps the memory every N cycles.\n");
-		ft_printf("\t-c: colorates the dumped memory.\n");
-		ft_printf("\t-v: Verbosity levels.\n");
+		print_usage();
 		return (EXIT_SUCCESS);
 	}
 	load_players(corewar);

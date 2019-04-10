@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 19:23:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/04/01 15:28:35 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/10 18:13:45 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ static void			run_cycle(t_corewar *corewar)
 {
 	t_list		**curr;
 	t_process	*process;
+	int			process_count;
 
+	process_count = corewar->process_count;
 	curr = &corewar->processes;
 	while (*curr != NULL)
 	{
@@ -92,6 +94,11 @@ static void			run_cycle(t_corewar *corewar)
 		}
 		curr = &(*curr)->next;
 	}
+	if (process_count != corewar->process_count
+		&& corewar->arguments.verbosity & VERBOSE_PROCESS_COUNT)
+		ft_printf("Cycle %6d | Process count : %d (+%-d process created)\n",
+			corewar->curr_cycle, corewar->process_count,
+			corewar->process_count - process_count);
 }
 
 t_player			*corewar_run(t_corewar *corewar)

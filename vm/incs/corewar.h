@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/29 17:25:51 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/10 15:14:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@
 
 # define DUMP_WIDTH 32
 # define MSG_COMMAND_LINE_ERROR "Error: invalid command line."
-# define VERBOSE_DEATH	0x01
-# define VERBOSE_LIVE	0x02
-# define VERBOSE_INST	0x04
-# define VERBOSE_AFF	0x08
-# define VERBOSE_CDT	0x10
+# define VERBOSE_DEATH			0x01
+# define VERBOSE_LIVE			0x02
+# define VERBOSE_INST			0x04
+# define VERBOSE_AFF			0x08
+# define VERBOSE_CDT			0x10
+# define VERBOSE_PROCESS_COUNT	0x20
 
 typedef struct s_player			t_player;
 typedef struct s_process		t_process;
