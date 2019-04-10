@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:20:33 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/29 14:45:18 by juazouz          ###   ########.fr        #
+#    Updated: 2019/04/10 19:59:48 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SOURCES		+=	main.c \
 				player.c \
 				dump.c \
 				output.c \
-				utils.c
+				utils.c \
+				corewar_manage_dump.c
 
 SRCS_DR		= srcs
 SRCS		= $(addprefix $(SRCS_DR)/, $(SOURCES))

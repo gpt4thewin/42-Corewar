@@ -6,10 +6,11 @@
 #    By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/18 20:21:38 by mbakhti           #+#    #+#              #
-#    Updated: 2019/03/08 21:28:53 by mbakhti          ###   ########.fr        #
+#    Updated: 2019/04/10 19:25:11 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME		= Manager
 ASM_NAME	= asm
 ASM_DIR		= asm
 ASM			= $(ASM_DIR)/$(ASM_NAME)

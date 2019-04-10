@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:43 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/04/10 15:14:27 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/10 19:59:35 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 **	Defines.
 */
 
-# define DUMP_WIDTH 32
+# define DUMP_WIDTH 64
 # define MSG_COMMAND_LINE_ERROR "Error: invalid command line."
 # define VERBOSE_DEATH			0x01
 # define VERBOSE_LIVE			0x02
@@ -327,5 +327,11 @@ void			print_instruction(t_process *process);
 */
 
 void			print_start_fight(t_corewar *corewar);
+
+/*
+**	corewar_manage_dump.c
+*/
+
+t_bool			corewar_manage_dump(t_corewar *corewar);
 
 #endif
