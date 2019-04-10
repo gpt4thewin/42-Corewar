@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 16:46:41 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/04/10 18:22:28 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/10 19:49:23 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	load_players(t_corewar *corewar)
 
 static void	print_usage(void)
 {
-	ft_printf("Usage:\t./corewar [-dump N] [-dump_cycle B] [-v N] [-c]"
-		" <champion1.cor> <...>\n");
+	ft_printf("Usage:\t./corewar [-dump N] [-dump_cycle B] [-v A] [-c]"
+		"-n A <champion1.cor> <...>\n");
 	ft_printf("\t-dump: dumps the memory after N cycles and exits.\n");
 	ft_printf("\t-dump_cycle: dumps the memory every N cycles.\n");
 	ft_printf("\t-c: colorates the dumped memory.\n");
@@ -38,6 +38,7 @@ static void	print_usage(void)
 	ft_printf("\t\t%5s : %-20s\n", "8", "Prints aff output");
 	ft_printf("\t\t%5s : %-20s\n", "16", "Prints CDT");
 	ft_printf("\t\t%5s : %-20s\n", "32", "Prints process count");
+	ft_printf("\t-n: attribute a id A to the player.\n");
 }
 
 int			main(int ac, const char *av[])
