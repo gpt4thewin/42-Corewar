@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:20:52 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/04/01 14:00:28 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/03 12:38:43 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int		get_type_size(t_instr **op, int i)
 	if ((*op)->param[i].type == REGISTER)
 		return (1);
 	else if ((*op)->param[i].type == INDIRECT
-	|| (*op)->param[i].type == INDIRECT_LABEL)
+		|| (*op)->param[i].type == INDIRECT_LABEL)
 		return (2);
 	else if ((*op)->param[i].type == DIRECT
-	|| (*op)->param[i].type == DIRECT_LABEL)
+		|| (*op)->param[i].type == DIRECT_LABEL)
 	{
 		if (g_op_tab[(*op)->opcode - 1].has_size_mod)
 			return (2);

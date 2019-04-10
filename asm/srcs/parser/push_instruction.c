@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_instruction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbakhti <mbakhti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:22:21 by mbakhti           #+#    #+#             */
-/*   Updated: 2019/03/08 19:14:26 by mbakhti          ###   ########.fr       */
+/*   Updated: 2019/04/03 12:38:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static _Bool	is_param(t_token token)
 {
 	if (token.type == REGISTER || token.type == INDIRECT
-	|| token.type == INDIRECT_LABEL || token.type == DIRECT
-	|| token.type == DIRECT_LABEL)
+		|| token.type == INDIRECT_LABEL || token.type == DIRECT
+		|| token.type == DIRECT_LABEL)
 		return (true);
 	return (false);
 }

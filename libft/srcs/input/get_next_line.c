@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 13:47:56 by juazouz           #+#    #+#             */
-/*   Updated: 2018/12/17 18:35:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/10 14:25:53 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int					get_next_line(int const fd, char **line)
 		return (-1);
 	if (!(save[fd]) && (save[fd] = ft_strnew(0)) == NULL)
 		return (-1);
-	while (!(ft_strchr(save[fd], '\n')) &&
-			(res = read(fd, buff, BUFF_SIZE)) > 0)
+	while (!(ft_strchr(save[fd], '\n'))
+		&& (res = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[res] = '\0';
 		save[fd] = append(save[fd], buff);
