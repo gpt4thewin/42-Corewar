@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:57:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/29 15:09:15 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/04/10 15:09:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	inst_live(t_corewar *corewar, t_process *process, t_paraminfo *param)
 	int				player_id;
 	int				i;
 
+	process->nbr_live++;
 	player_id = -param->params[0].value.dir;
 	i = 0;
 	while (i < corewar->players_count)
@@ -45,7 +46,6 @@ void	inst_live(t_corewar *corewar, t_process *process, t_paraminfo *param)
 		if (corewar->players[i].id == player_id)
 		{
 			corewar->last_live = &corewar->players[i];
-			process->nbr_live++;
 			if (corewar->arguments.verbosity & VERBOSE_LIVE)
 				ft_printf("Le joueur %d(%s) est en vie.\n",
 					corewar->players[i].id,
