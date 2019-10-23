@@ -24,3 +24,14 @@ Processes are in parallel execution and each instruction take a certain number o
 ### General conception
 Because of this repeating logic, we avoided repeating near-identical code in every functions like most 42/Epitech corewar projects did.
 We created a generic_write() and generic_read() functions instead that makes our source code a lot of readable and maintainable.
+### Operations
+Upon executing an instruction, the machine runs following workflow :
+* Reads one byte that determinates the instruction.
+* (If needed by the instruction) reads one byte of parameter encoding. Indicates what type of parameters of varying size to use (registry number, constant value, value from memory).
+* (If the parameter encoding byte is valid) reads and loads the parameter of varying size for the instruction execution.
+* Selects the function responsible for the instruction. There is a function to every machine instruction (ld, st, zjmp, add, sub...) that all have the exact same signature (parameters type and return value), similar to interfaces in object oriented programming.
+Most of these functions will need to read the actual values of parameters that were passed to them.
+For instance, what happens upon reading parameters by the instructions:
+If a registry number was specified, the relevant value is the value stored of the registry, not the registry number itself.
+If a memory address value was specified, the relevant value is the value that is stored at the specified address, not the address itself.
+If a direct value was specified, the relevant value is the value itself.
